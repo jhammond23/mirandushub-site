@@ -37,7 +37,7 @@ const hamlets = [
         description : `The Ranching Hamlet is one of the two types of Hamlets in Mirandus. There are 200 total Ranching Hamlet available to own in Mirandus. Making them quite plentiful through the land. More Milk and Bacon to you!`,
         rarity : 'Rare',
         threeDImg : rancHamlThreeDImg,
-        total : 200,
+        total : 100,
         flatImg : rancHamlFlatImg,
         Img : rancHamlImg,
         houseSize : '10x20',

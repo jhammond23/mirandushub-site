@@ -24,17 +24,23 @@ const GuildCard = (props) => {
       <div className='icons'>
         {discord && (
           <a href={discord} target='_blank' className='discord'>
-            <FaDiscord size={25} onClick={handleIconClick} />
+            <div className='discord-div'>
+              <FaDiscord size={25} onClick={handleIconClick} />
+            </div>
           </a>
         )}
         {youtube && (
           <a href={youtube} target='_blank' className='youtube'>
-            <FaYoutube size={25} onClick={handleIconClick} />
+            <div className='youtube-div'>
+              <FaYoutube size={25} onClick={handleIconClick} />
+            </div>
           </a>
         )}
         {website && (
           <a href={website} target='_blank' className='website'>
-            <FaGlobe size={25} onClick={handleIconClick} />
+            <div className='website-div'>
+              <FaGlobe size={25} onClick={handleIconClick} />
+            </div>
           </a>
         )}
       </div>

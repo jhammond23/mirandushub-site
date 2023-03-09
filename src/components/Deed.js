@@ -4,9 +4,6 @@ import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import { useState } from 'react';
 
-
-
-
 const Deed = ({deed}) => {
 
   let slides = [
@@ -37,29 +34,103 @@ const Deed = ({deed}) => {
           <div className='r-deedNameBanner'>
             <div className='r-deedName'>{deed.name}</div>
             <div className='r-deedDescription'>{deed.description} The {deed.name} includes the plot information below, along with a {deed.houseSize} main house.</div>
-
           </div>
             <div className='r-deedInnerCont'>
               <div className='r-deedInfoCont'>
-                  <div className='r-deedStats'><span>{deed.name} Stats:</span>
-                    <ul><span>Building Plots:</span> 
-                      <li><span>{deed.BP5x5}x</span> 5x5 building plots</li>
-                      <li><span>{deed.BP10x10}x</span> 10x10 building plots</li>
-                      <li><span>{deed.BP10x20}x</span> 10x20 building plots</li>
-                      <li><span>{deed.BP20x20}x</span> 20x20 building plots</li>
-                      <li><span>{deed.BP20x40}x</span> 20x40 building plots</li>
+                  <div className='r-deedStats'>
+                    <span>{deed.name} Stats:</span>
+                    <ul className='deedStatCont'>
+                      {deed.BP5x5 > 0 && (
+                        <li className={`deedStatCol ${deed.BP5x5 > 0 ? '' : 'hidden'}`}>
+                          <span className='spotType'>Building Plots:</span> 
+                          <div className='deedStatRow'>
+
+                          <span className='amount'>{deed.BP5x5}x</span> 5x5 building plot
+
+                          </div>
+                        </li>
+                      )}
+                      {deed.BP10x10 > 0 && (
+                        <li className={`deedStatCol ${deed.BP10x10 > 0 ? '' : 'hidden'}`}>
+                          <div className='deedStatRow'>
+
+                          <span className='amount'>{deed.BP10x10}x</span> 10x10 building plot
+
+                          </div>
+                        </li>
+                      )}
+                      {deed.BP10x20 > 0 && (
+                        <li className={`deedStatCol ${deed.BP10x20 > 0 ? '' : 'hidden'}`}>
+                          <div className='deedStatRow'>
+
+                          <span className='amount'>{deed.BP10x20}x</span> 10x20 building plot
+
+                          </div>
+                        </li>
+                      )}
+                      {deed.BP20x20 > 0 && (
+                        <li className={`deedStatCol ${deed.BP20x20 > 0 ? '' : 'hidden'}`}>
+                          <div className='deedStatRow'>
+
+                          <span className='amount'>{deed.BP20x20}x</span> 20x20 building plot
+
+                          </div>
+                        </li>
+                      )}
+                      {deed.BP20x40 > 0 && (
+                        <li className={`deedStatCol ${deed.BP20x40 > 0 ? '' : 'hidden'}`}>
+                          <div className='deedStatRow'>
+
+                          <span className='amount'>{deed.BP20x40}x</span> 20x40 building plot
+
+                          </div>
+                        </li>
+                      )}
                     </ul>
-                    <ul><span>Farming Plots:</span>
-                      <li><span>{deed.FP5x5}x</span> 5x5 farming plots</li>
-                    </ul>
-                    <ul><span>Ranching Plots:</span>
-                      <li><span>{deed.RP5x5}x</span> 5x5 ranching plots</li>
-                    </ul>
-                    <ul><span>Decoration Plots:</span>
-                      <li><span>{deed.sDeco}x</span> small decorations</li>
-                      <li><span>{deed.mDeco}x</span> medium decorations</li>
-                      <li><span>{deed.lDeco}x</span> large decorations</li>
-                    </ul>
+                    {deed.FP5x5 > 0 && (
+                      <li className={`deedStatCol ${deed.FP5x5 > 0 ? '' : 'hidden'}`}>
+                        <span className='spotType'>Farming Plots:</span> 
+                        <div className='deedStatRow'>
+
+                        <span className='amount'>{deed.FP5x5}x</span> 5x5 farming plot
+
+                        </div>
+                      </li>
+                    )}
+                    {deed.RP5x5 > 0 && (
+                      <li className={`deedStatCol ${deed.RP5x5 > 0 ? '' : 'hidden'}`}>
+                        <span className='spotType'>Ranching Plots:</span> 
+                        <div className='deedStatRow'>
+
+                        <span className='amount'>{deed.RP5x5}x</span> 5x5 ranching plot
+
+                        </div>
+                      </li>
+                    )}
+                    {(deed.sDeco > 0 || deed.mDeco > 0 || deed.lDeco > 0) && (
+                      <ul className='deedStatCont'>
+                        <li className='deedStatCol'>
+                          <span className='spotType'>Decoration Plots:</span> 
+                            {deed.sDeco > 0 &&
+                              <div className='deedStatRow'>
+                                <span className='amount'>{deed.sDeco}x</span> small decoration
+                              </div>
+                            }
+                            
+                            {deed.mDeco > 0 &&
+                              <div className='deedStatRow'>
+                                <span className='amount'>{deed.mDeco}x </span> medium decoration
+                              </div>
+                            }
+                            
+                            {deed.lDeco > 0 &&
+                            <div className='deedStatRow'>
+                              <span className='amount'>{deed.lDeco}x</span> large decoration
+                            </div>
+                            }
+                        </li>
+                      </ul>
+                      )}
                   </div>
               </div>
             </div>

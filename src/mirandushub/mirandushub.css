@@ -4,7 +4,22 @@
   
 
 }
-
+@font-face {
+  font-family: 'PenumbraSerifStd-Bold';
+  src: url('../fonts/penumbra-serif-std/PenumbraSerifStd-Bold.otf') format('woff');
+}
+@font-face {
+  font-family: 'PenumbraSerifStd-Light';
+  src: url('../fonts/penumbra-serif-std/PenumbraSerifStd-Light.otf') format('woff');
+}
+@font-face {
+  font-family: 'PenumbraSerifStd-Semibold';
+  src: url('../fonts/penumbra-serif-std/PenumbraSerifStd-Semibold.otf') format('woff');
+}
+@font-face {
+  font-family: 'PenumbraSerifStd-Regular';
+  src: url('../fonts/penumbra-serif-std/PenumbraSerifStd-Regular.otf') format('woff');
+}
 :root {
   --smallFont: clamp(1rem, 1vw, 1rem);
   --mediumFont: clamp(1rem, 3vw, 1.3rem);
@@ -109,30 +124,30 @@ a:hover {
 }
 
 #menu[data-active-index="0"] > #menu-background-image, 
-#menu[data-active-index="0"] > #menu-background-imageExplore{
+#menu[data-active-index="0"] > #menu-background-imageAssets{
   background-position: center 0%;
 }
 
 #menu[data-active-index="1"] > #menu-background-image,
-#menu[data-active-index="1"] > #menu-background-imageExplore
+#menu[data-active-index="1"] > #menu-background-imageAssets
 {
   background-position: center 20%;
 }
 
 #menu[data-active-index="2"] > #menu-background-image, 
-#menu[data-active-index="2"] > #menu-background-imageExplore
+#menu[data-active-index="2"] > #menu-background-imageAssets
 {
   background-position: center 40%;
 }
 
 #menu[data-active-index="3"] > #menu-background-image,
-#menu[data-active-index="3"] > #menu-background-imageExplore
+#menu[data-active-index="3"] > #menu-background-imageAssets
 {
   background-position: center 60%;
 }
 
 #menu[data-active-index="4"] > #menu-background-image,
-#menu[data-active-index="4"] > #menu-background-imageExplore
+#menu[data-active-index="4"] > #menu-background-imageAssets
 {
   background-position: center 80%;
 }
@@ -168,14 +183,14 @@ a:hover {
 }
 
 #menu-background-pattern,
-#menu-background-patternExplore {
+#menu-background-patternAssets {
   background-image: linear-gradient(#3774b117 .1em, transparent .1em), linear-gradient(90deg, #3774b117 .1em, transparent .1em);
   background-size: 3em 3em;
   background-position: 0% 0%;
   background-size: 12vmin 12vmin;
-  height: 130vh;
+  height: 100vh;
   left: 0px;
-  position: absolute;
+  position: fixed;
   top: 0px;
   transition: opacity 800ms ease, 
     background-size 800ms ease,
@@ -184,8 +199,12 @@ a:hover {
   z-index: -1;
 }
 
+#menu-background-image {
+  box-shadow: inset -10px -11px 38px 10px #7a76ec70;
+}
+
 #menu-background-image,
-#menu-background-imageExplore {
+#menu-background-imageAssets {
   background: url("./pics/Mirandus_Encounter_2.jpg");
   background-position: center 0%;
   background-size: 115vmax;
@@ -239,6 +258,7 @@ a:hover {
   position: relative;
   text-shadow: #000 12px 12px 15px;
   font-family: 'Cinzel';
+  font-weight: bold;
 }
 
 .menu-item:hover::after {
@@ -1067,7 +1087,7 @@ nav{
   color:#ecbc62;
   text-shadow: #790cbd 0px 2px 5px;
   font-weight: 600;
-  font-size: calc(var(--mediumFont) - .2rem);
+  font-size: calc(var(--mediumFont) - .5rem);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1077,6 +1097,8 @@ nav{
   ;
   animation: mtrm ease infinite 5s;
   z-index: 999999;
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
 }
 .bubbleDisplayerOn {
   animation: slide-up 2s, hover ease 4s infinite, mtrm ease infinite 3s;
@@ -1383,7 +1405,8 @@ nav{
 .r-buildingRarity span, 
 .r-buildingTotal span {
   color: #ecbc62;
-  font-family: 'Iowan';
+  font-family: 'PenumbraSerifStd-Semibold';
+  text-shadow: 0 0 8px #790cbd;
 }
 
 .r-monstersSize span {
@@ -1541,7 +1564,9 @@ nav{
 }
 .r-charName,
 .r-monstersName {
+  font-family: 'PenumbraSerifStd-Semibold';
   color: #ecbc62;
+  text-shadow: 0 0 8px #790cbd;
   font-size: calc(var(--veryLargeFont) - .6rem);
   width: 100%;
   text-align: center;
@@ -1563,14 +1588,15 @@ nav{
   text-transform: uppercase;
   position: relative;
   margin-bottom: 2%;
-
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
 }
 .r-deedName::before {
   font-size: var(--smallFont);
   content: 'The';
   position: absolute;
   top: 17%;
-  transform: translatex(-40px);
+  transform: translatex(-50px);
   color: #cde;
 }
 .r-deedNameBanner {
@@ -1620,12 +1646,14 @@ nav{
   justify-content: space-around;
 }
 
-.r-deedStats span {
+.spotType {
   display: block;
   font-size:var(--mediumFont);
   text-decoration: underline;
-  color: #f1d832;
+  color: #ecbc62;
   letter-spacing: 1px;
+  font-family: 'PenumbraSerifStd-Semibold';
+  text-shadow: 0 0 8px #790cbd;
 
 }
 .r-deedStats > span {
@@ -1635,31 +1663,36 @@ nav{
   font-size: var(--largeFont);
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
   color: #ecbc62;
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
+
 }
-.r-deedStats li > span {
-  display: flex;
-  font-size: var(--mediumFont);
-  text-decoration: none;
-  margin-right: 2%;
-}
-.r-deedStats li > span::before {
+
+.deedStatRow::before {
   content: '✦';
-  transform: translatex(-5px) scale(.7);
+  transform: translatex(-8px) scale(.6);
 }
-.r-deedStats > ul {
-  height: fit-content;
+
+
+.deedStatCont {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  padding: 0;
 }
-.r-deedStats  li {
-  margin: 2%;
-  width: 250px;
+.deedStatCol {
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+}
+.deedStatRow {
   display: flex;
   flex-direction: row;
-
+}
+.amount {
+  color: #ecbc62;
+  text-shadow: 0 0 8px #790cbd;
+  transform: translateX(-6px);
 }
 
 .r-charInfoCont {
@@ -1697,7 +1730,6 @@ nav{
   padding: 1em;
   padding-bottom: 3em;
   white-space: pre-wrap;
-  font-family: iowan;
 }
 .r-deedDescription {
   color: whitesmoke;
@@ -1706,22 +1738,25 @@ nav{
   width: 100%;
   text-align: center;
   white-space: pre-wrap;
-  font-family: iowan;
 }
+.hidden {
+  display: none;
+}
+
 .r-abilName {
   color: #ecbc62;
   font-size: var(--mediumFont);
   order: 4;
   height: fit-content;
   width: fit-content;
-
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
 
 }
 .r-abilName span,
 .r-abilDesc span {
   color: whitesmoke;
   font-size: var(--largeFont);
-  font-family: iowan;
   display: block;
   text-decoration: underline;
   line-height: 175%;
@@ -1741,6 +1776,8 @@ nav{
   color: #ecbc62;
   order: 6;
   width: 45%;
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
 }
 
 
@@ -1749,7 +1786,7 @@ nav{
 .r-buildingSelectorTitle,
 .r-monsterSelectorTitle,
 .r-aboutTitles {
-  font-family: 'Iowan';
+  font-weight: 600;
   text-align: center;
   padding: 3%;
   margin: 0 auto;
@@ -1757,25 +1794,16 @@ nav{
   font-size: var(--veryLargeFont);
   letter-spacing: 5px;
   line-height: 1;
-  border: 6px solid #ecbc6220;
   width: fit-content;
-  background-color: #11111199;
-  box-shadow: inset 0 0 30px 10px black;
   display: flex;
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd, 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 100px black, 0 0 150px black;
 
 }
-.r-buildingSelectorTitle {
-  border: 4px solid #7a76ec30;
-}
-.r-deedSelectorTitle {
-  border: 4px solid #7a76ec30;
-  background-color: #00000099;
-}
+
 .r-monsterSelectorTitle {
   color: #b43131;
-  border: 4px solid #b4313130;
-  background-color: #000000cc;
-
+  text-shadow: 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 100px black, 0 0 150px black;
 }
 .r-raceSelectorTitle::before {
   content: 'E';
@@ -1886,12 +1914,14 @@ nav{
   display: flex;
   justify-content:center;
   color: #ecbc62;
-  text-shadow: 5px 5px 15px #410e58;
-  font-size: calc(var(--largeFont) + .5rem);
+  text-shadow: 0 0 8px #790cbd;
+  font-size: 1.4rem;
   height: 150%;
   align-items: flex-end;
   position: relative;
   z-index: 1;
+  font-family: 'PenumbraSerifStd-Semibold';
+
 }
 
 .r-raceNames::after,
@@ -1906,6 +1936,7 @@ nav{
   border-radius: 15%;
   transition: all 1s ease;
   box-shadow: inset  3px 3px 15px 3px #000;
+  transform: translateY(5px);
 }
 
 .r-buildingNames,
@@ -1921,8 +1952,10 @@ nav{
   align-items: center;
   background: linear-gradient(#000, #222);
   display: block;
-  font-size: calc(var(--largeFont) + .1rem);
-
+  font-size: 1.3rem;
+  padding-top: 5px;
+  font-family: 'PenumbraSerifStd-Semibold';
+  text-shadow: 0 0 8px #790cbd;
 }
 .r-buildingNames > span {
   font-size: calc(var(--smallFont) - 0.2rem);
@@ -1930,7 +1963,7 @@ nav{
 }
 .r-monsterNames {
   transform: translatex(-80px) translateY(100px);
-  font-size: calc(var(--largeFont) + .3rem);
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1940,7 +1973,7 @@ nav{
   box-shadow: inset 0 0 5px 2px #130400;
   font-weight: bold;
   border-radius: 20%;
-
+  text-shadow: none;
 }
 
 .r-Homestead:hover .r-deedNames::after {
@@ -1958,7 +1991,7 @@ nav{
 }
 .r-Halflings:hover .r-raceNames::after,
 .r-Towns:hover .r-deedNames::after {
-  border: 4px solid #cde;
+  border: 4px solid #ecbc62;
 }
 .r-Elves:hover .r-raceNames::after,
 .r-Citadels .r-deedNames::after {
@@ -2385,6 +2418,8 @@ figure > div {
   font-size: var(--largeFont);
   color: #ecbc62;
   text-transform: uppercase;
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
 }
 
 .aboutHeader {
@@ -2400,16 +2435,18 @@ figure > div {
   color: #ecbc62;
   font-size: var(--largeFont);
   text-transform: uppercase;
+  font-family: 'PenumbraSerifStd-Bold';
+  text-shadow: 0 0 8px #790cbd;
 }
 
-/* Explore */
+/* Assets */
 
-#menu-background-imageExplore {
+#menu-background-imageAssets {
   background-image: url('../mirandushub/pics/stable.png');
   height: 130vh;
   background-size: 150%;
 }
-#menu-background-patternExplore {
+#menu-background-patternAssets {
   max-height: 130vh;
 }
 .fullScreen {
@@ -2454,53 +2491,25 @@ figure > div {
   box-shadow: 10px 50px 30px black, 10px 50px 30px black;
   transform-style: preserve-3d;
   margin: 50px;
-  border-radius: 25px;
   -webkit-user-select: none; /* Safari */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none;
   z-index: 1;
-  transform: rotateY(15deg);
+  border-radius: 10px;
 }
 
 .guildCard:hover {
   transform: rotateY(0deg);
-  box-shadow: 10px 40px 50px black, 0 0 25px 15px #ffb70080;
+  box-shadow: 0px 40px 50px black, 0 0 25px 15px #ffb70050;
 }
-.guildCard::before {
-  width: 276px;
-  height: 410px;
-  background: #ffb700;
-  border-radius: 15px;
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-}
+
 
 _::-webkit-full-page-media, _:future, :root .guildCard::before {
   display: none;
 }
-_::-webkit-full-page-media, _:future, :root .guildCard {
-  border: 4px solid #ffb700;
-}
 
-.guildCard::after {
-  width: fit-content;
-  content: 'Mirandus Guild';
-  height: fit-content;
-  border: 2px solid #ffb700;
-  background-color: #222;
-  position: absolute;
-  transform: translateX(70%) translateY(-60%);
-  box-shadow: -.5px 0px 0px 1px black;
-  z-index: 2;
-  padding: 5px;
-  perspective: flat;
-  border-radius: 80% 80% 15% 15%;
-  font-size: var(--smallFont);
-  backface-visibility: hidden;
-}
+
 
 .card-front,
 .card-back {
@@ -2514,22 +2523,23 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: flex-start;
-  border-radius: 25px;
   padding: 15px;
   text-align: center;
   box-shadow: inset 0px 0px 50px black;
+  border-radius: 10px;
 
 }
 
 .card-front {
   z-index: 2;
-  background: linear-gradient(to bottom right, #cfaf6a 5%, #8a6e3d 30%, #231910);
-  background-image: contain;
+  background: url(../components/NFTpics/guilds/card-removebg.png);
+  background-size: cover;
+  background-position: 50% 50%;
 }
 
 .card-back {
-  background: linear-gradient(to bottom right, #cfaf6a 5%, #8a6e3d 30%, #231910);
-  background-image: contain;
+  background: url(../components/NFTpics/guilds/backCardBack.png);
+  background-size: cover;
   transform: rotateY(180deg);
   font-size: var(--largeFont);
 }
@@ -2557,11 +2567,10 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
 
 .guildDescription {
   display: flex;
-  font-size: calc(var(--mediumFont) - .15rem);
-  background: #111;
-  border: 2px solid #ffb700;
+  font-size: .9rem;
+  color: transparent;
   border-radius: 25px;
-  padding: 10px 2px;
+  padding: 15px;
   height: 100%;
   width: 100%;
   overflow: hidden;
@@ -2571,49 +2580,80 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   position: relative;
   background-size: cover;
   background-position: 30% 60%;
-  box-shadow: 10px 30px 60px black, inset 0px 0px 150px black;
-  padding: 5px;
-
+  font-family: 'PenumbraSerifStd-Regular';
+  font-weight: 600;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: url('../mirandushub/pics/texture.png');
+  background-size: cover;
+}
+.guildDescription::after {
+  content: '';
+  background: url(../mirandushub/pics/lightTexture.png);
+  background-size: contain;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  opacity: .1;
 }
 
 .guildName {
-  font-weight: bolder;
-  text-shadow:  1px 2px black;
+  font-family: 'PenumbraSerifStd-Semibold';
   position: relative;
   width: 100%;
   height: 90px;
-  z-index: 5;
-  color: #ecbc62;
+  z-index: -1;
+  color: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 1.5rem;
+  transform: rotate(-3deg);
+  margin-top: 25px;
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-image: url('../mirandushub/pics/texture.png');
+  background-size: cover;
+  padding: 0 5px;
 }
-.guildName::before {
-  width: calc(100% + 40px);
+.guildName::after {
   content: '';
-  height: 105px;
-  background-color: #111;
-  box-shadow: inset 0px 0px 40px black;
+  background: url(../mirandushub/pics/lightTexture.png);
+  background-size: contain;
+  width: 100%;
   position: absolute;
-  top: 0;
-  left: -20px;
-  border-radius: 0% 0% 15% 15%;
-  z-index: -1;
-  transform: translateY(-10%);
-  border:  4px solid #ffb700;
-  display: flex;
-
+  height: 100%;
+  opacity: .1;
 }
+
 .icons {
   position: absolute;
-  bottom: 5px;
+  bottom: 10px;
+  width: 100%;
   padding: 2px;
+  right: 0;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  transform: rotate(-3deg);
+}
+.icons::after {
+  content: '';
+  background: url(../mirandushub/pics/lightTexture.png);
+  background-size: contain;
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  opacity: .2;
 }
 .icons a {
   margin: 5px;
   z-index: 5;
   text-decoration: none;
-  color: #f1d832
+  color: #1f1b19;
+
 }
 .icons a:hover {
   transition: ease-in-out .15s;
@@ -2632,9 +2672,10 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   background-color: white;
   height: 10px;
   width: 15px;
+  transform: translateY(50%);
   position: absolute;
-  top: 30%;
-  left: 20%;
+  top: 9px;
+  left: 5px;
   z-index: -1;
 
 }
@@ -2643,7 +2684,7 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
 }
 
 .fullpage {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
   background-color: #111;
   background-image: linear-gradient(#3774b117 .1em, transparent .1em), linear-gradient(90deg, #3774b117 .1em, transparent .1em);
@@ -2692,7 +2733,7 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   color: black;
   right: 160px;
   bottom: 100px;
-  font-size: var(--largeFontSize);
+  font-size: 1.2rem;
   font-weight: 700;
   transform: rotate(-5deg) scale(5%);
   transform-origin: bottom right;
@@ -2728,16 +2769,19 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   justify-content: center;
   font-size: var(--veryLargeFont);
   background-color: white;
-  border: 10px solid black ;
+  border-bottom: 10px solid #000 ;
   background-image: url('../mirandushub/pics/tavern.jpg');
   background-position: 100% 70%;
-  color: #f1d832;
+  color: #ecbc62;
   text-shadow: 0 0 50px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black;
   font-weight: bold;
   box-shadow: inset 0 0 100px 30px black;
   background-size: cover;
   filter: brightness(.9);
   align-items: center;
+  font-family: 'PenumbraSerifStd-Regular';
+  margin-bottom: 0;
+
 
 }
 
@@ -2756,7 +2800,7 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   color: #ecbc62;
   background-color: #111;
   border-radius: 25px;
-  border: 4px solid #ffb700;
+  border: 4px solid #ecbc62;
   box-shadow: 10px 30px 60px black, inset 0px 0px 400px black;
   filter: brightness(90%);
   min-height: 80vh;
@@ -2797,7 +2841,7 @@ _::-webkit-full-page-media, _:future, :root .guildCard {
   background-color: #444;
   color: white;
   text-shadow: 0 0 5px black,  0 0 5px black,  0 0 5px black,  0 0 35px black;
-  border: 2px solid #ffb700;
+  border: 2px solid #ecbc62;
   order: 3;
   display: block;
   margin: 0 100% 0 100%;
@@ -2874,7 +2918,8 @@ input[type="checkbox"] {
     scale: 75%;
   }
   .chatBubbleText {
-    bottom: 11%;
+    right: 151px;
+    bottom: 9%;
     scale: 75%;
   }
   .guildCard-container {
@@ -2940,13 +2985,13 @@ input[type="checkbox"] {
     display: none;
   }
   #menu-background-image,
-  #menu-background-imageExplore {
+  #menu-background-imageAssets {
     background: url("./pics/Mirandus_Encounter_2.jpg");
     background-position: center -8%;
     background-size: cover;
     background-repeat: none;
   }
-  #menu-background-imageExplore {
+  #menu-background-imageAssets {
     background: url('../mirandushub/pics/citadelOfTheSunBright.jpg');
     background-size: cover;
   }
@@ -3056,6 +3101,7 @@ input[type="checkbox"] {
   .bubbleDisplayerOn,
   .bubbleDisplayer {
     font-size: var(--largeFont);
+    
   }
   .menu-item {
     font-size: calc(var(--veryLargeFont) + .85rem);
@@ -3088,6 +3134,7 @@ input[type="checkbox"] {
   .r-abilName {
     width: 80%;
     font-size: var(--largeFont);
+
   }
   .r-abilName span {
     font-size: var(--largeFont);
@@ -3201,10 +3248,10 @@ input[type="checkbox"] {
   #menu-background-image {
     background-position: 75%;
   }
-  .menu-background-imageExplore {
+  .menu-background-imageAssets {
     height: calc(100vh - 80px);
   }
-  .menu-background-patternExplore {
+  .menu-background-patternAssets {
     height: calc(100vh - 80px);
   }
   .r-deedStats > span {
@@ -3236,6 +3283,10 @@ input[type="checkbox"] {
   }
   .nav-menu {
     border-radius: 0;
+  }
+  .discord:hover::after,
+  .youtube:hover::after {
+    display: none;
   }
 
 }

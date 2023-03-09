@@ -63,11 +63,11 @@ function Navbar() {
             }
           }          >
             <Link
-              to='/explore'
+              to='/assets'
               id='nav-links'
               onClick={closeMobileMenu}
             >
-              Explore<i className='fas fa-caret-down' />
+              Assets<i className='fas fa-caret-down' />
             </Link>
             {dropdown && <Dropdown />}
           </li>

@@ -30,7 +30,7 @@ export default function Home () {
         <section className="home">
             <div id="menu">
                 <div id="menu-items">
-                    <Link to="/explore" class='menu-item one' onMouseEnter={() => setIndex(2)}>EXPLORE</Link>
+                    <Link to="/assets" class='menu-item one' onMouseEnter={() => setIndex(2)}>ASSETS</Link>
                     <Link to="/community" class="menu-item two" onMouseEnter={() => setIndex(3)}>COMMUNITY</Link>
                     <Link class="menu-item three" to="/monsters" onMouseEnter={() => setIndex(4)}>MONSTERS</Link>
                     <Link to="/about" class='menu-item four' onMouseEnter={() => setIndex(1)}>ABOUT</Link>
@@ -43,6 +43,12 @@ export default function Home () {
             <div className="orb3"></div>
             <div className="orb4"></div>
             <div className="orb5"></div>
+        </section>
+    )
+}
+
+/*
+
             <div className="homeMirandusDescriptionContainer r-background">
                 <h1 className="homeHeader">What is <span>Mirandus</span>?</h1>
                 <div className="homeSlideCont">
@@ -80,6 +86,5 @@ export default function Home () {
                     </div>
                 </div>
               </div>
-        </section>
-    )
-}
+
+*/

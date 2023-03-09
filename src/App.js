@@ -13,7 +13,6 @@ import DropdownNavbar from './components/DropdownNavbar';
 import Dropdown from './components/Dropdown';
 import { useEffect, useState } from 'react';
 import About from './components/pages/About';
-import Explore from './components/pages/Explore';
 import Others from './components/pages/Others';
 import Guilds from './components/pages/Guilds';
 import Community from './components/pages/Community';
@@ -24,6 +23,7 @@ import TestFooter from './components/TestFooter';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GuildApp from './components/pages/GuildApp';
+import Assets from './components/pages/Assets';
 
 function App() {
 
@@ -56,7 +56,7 @@ function App() {
   useEffect(() => {
     if (hasMounted) {
       if (location.pathname === '/') {
-        toast.info(`UPDATE! Added a read out feature to exemplar tavern tales.`, {
+        toast.info(`03/06/2023 UPDATE: Added a page for guild recruitment!`, {
           position: toast.POSITION.BOTTOM_RIGHT,
           style : {
             backgroundColor: '#333',
@@ -64,7 +64,7 @@ function App() {
             borderRadius: '4px',
           },
           onClick: () => {
-            navigate('/exemplars');
+            navigate('/guilds');
           }
         });
       } else if (location.pathname === '/exemplars') {
@@ -92,10 +92,10 @@ function App() {
           <Route path='/deeds' element={<DisplayDeeds />} />
           <Route path='/buildings' element={<DisplayBuildings />} />
           <Route path='/about' element={<About />} />
-          <Route path='/explore' element={<Explore /> } />
+          <Route path='/assets' element={<Assets /> } />
           <Route path='/monsters' element={<Displaymonsters /> } />
           <Route path='/others' element={<Others /> } />
-          <Route path='/community' element={<Community /> } />
+          <Route path='/community' element={<Guilds /> } />
           <Route path='/guilds' element={<Guilds /> } />
           <Route path='/creators' element={<Creators /> } />
           <Route path='/guild-application' element={<GuildApp /> } />
