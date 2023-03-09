@@ -1,0 +1,3310 @@
+* {
+  text-decoration: none;
+  font-family: 'Iowan', 'Serif';
+  
+
+}
+
+:root {
+  --smallFont: clamp(1rem, 1vw, 1rem);
+  --mediumFont: clamp(1rem, 3vw, 1.3rem);
+  --largeFont: clamp(1.2rem, 4vw, 1.5rem);
+  --veryLargeFont: clamp(2rem, 6vw, 5rem);
+  --dropCaseFont: clamp(2.5rem, 7vw, 6rem);
+}
+
+html {
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+body, .body {
+  background-color: #111;
+  margin: 0px;
+  overflow-x: clip;
+  font-size: var(--mediumFont);
+  background-size: 3em 3em;
+  background-position: 0% 0%;
+  background-size: 12vmin 12vmin;
+  z-index: -1;
+  height: 100%;
+}
+
+
+button:focus {
+  outline: none;
+}
+
+.back-to-top {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  font-size: 50px;
+  background: #77777750;
+  color: white;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  box-shadow: 0 5px 10px #ccc;
+  width: 75px;
+  height: 75px;
+  z-index: 10;
+  transform: scale(.5);
+}
+
+.back-to-top:hover {
+  filter: brightness(120%);
+  transform: scale(.6);
+  transition: .5s ease;
+}
+a:hover {
+  text-decoration: none;
+  font-style: none;}
+#logo{
+  font-size: var(--mediumFont);
+  font-weight: normal;
+  color: #ecbc62;
+  text-shadow: 0 2px 8px #790cbd;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+#logo:hover {
+  transform: scale(1.05);
+  transition: all .5s ease;
+}
+
+#menu {
+  padding-top: 20vh;
+  align-items:flex-start;
+  display: flex;
+  height: 90vh;
+  width: 100vw;
+}
+
+#menu-items {
+  margin-left: clamp(2rem, 10vw, 24rem);
+  position: relative;
+  z-index: 2;
+}
+
+#menu[data-active-index="0"] > #menu-background-pattern {
+  background-position: 0% -20%;
+}
+
+#menu[data-active-index="1"] > #menu-background-pattern {
+  background-position: 0% -42%;
+}
+
+#menu[data-active-index="2"] > #menu-background-pattern {
+  background-position: 0% -60%;
+}
+
+#menu[data-active-index="3"] > #menu-background-pattern {
+  background-position: 0% -80%;
+}
+
+#menu[data-active-index="4"] > #menu-background-pattern {
+  background-position: 0% -100%;
+}
+
+#menu[data-active-index="0"] > #menu-background-image, 
+#menu[data-active-index="0"] > #menu-background-imageExplore{
+  background-position: center 0%;
+}
+
+#menu[data-active-index="1"] > #menu-background-image,
+#menu[data-active-index="1"] > #menu-background-imageExplore
+{
+  background-position: center 20%;
+}
+
+#menu[data-active-index="2"] > #menu-background-image, 
+#menu[data-active-index="2"] > #menu-background-imageExplore
+{
+  background-position: center 40%;
+}
+
+#menu[data-active-index="3"] > #menu-background-image,
+#menu[data-active-index="3"] > #menu-background-imageExplore
+{
+  background-position: center 60%;
+}
+
+#menu[data-active-index="4"] > #menu-background-image,
+#menu[data-active-index="4"] > #menu-background-imageExplore
+{
+  background-position: center 80%;
+}
+
+.one {
+  animation: menuItem .75s;
+}
+.two {
+  animation: menuItem .75s;
+  animation-delay: .05s;
+}
+.three {
+  animation: menuItem .75s;
+  animation-delay: .1s;
+
+}
+.four {
+  animation: menuItem .75s;
+  animation-delay: .15s;
+
+}
+
+@keyframes menuItem {
+  0% {
+    left: -100vw;
+  }
+  65% {
+    left: 3vw;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+#menu-background-pattern,
+#menu-background-patternExplore {
+  background-image: linear-gradient(#3774b117 .1em, transparent .1em), linear-gradient(90deg, #3774b117 .1em, transparent .1em);
+  background-size: 3em 3em;
+  background-position: 0% 0%;
+  background-size: 12vmin 12vmin;
+  height: 130vh;
+  left: 0px;
+  position: absolute;
+  top: 0px;
+  transition: opacity 800ms ease, 
+    background-size 800ms ease,
+    background-position 800ms ease;
+  width: 100vw;
+  z-index: -1;
+}
+
+#menu-background-image,
+#menu-background-imageExplore {
+  background: url("./pics/Mirandus_Encounter_2.jpg");
+  background-position: center 0%;
+  background-size: 115vmax;
+  background-repeat: no-repeat;
+  height: 100%;
+  left: 0px;  
+  opacity: 0.25;
+  position: absolute;
+  top: 0px;
+  transition: opacity 800ms ease,
+    background-size 800ms ease,
+    background-position 800ms ease;
+  width: 100%;
+  z-index: -1;
+}
+
+#menu-items:hover ~ #menu-background-pattern {
+  background-size: 11vmin 11vmin;
+  opacity: 0.5;
+}
+
+#menu-items:hover ~ #menu-background-image {
+  background-size: 120vmax;
+  opacity: 0.1;
+}
+
+#menu-items:hover > .menu-item {
+  opacity: 0.3;
+}
+
+#menu-items:hover .menu-item:hover {
+  opacity: 1;
+  color: #fcfcfc;
+  transition: all 400ms ease;
+  letter-spacing: .1em;
+  text-shadow: 0 2px 8px #3630cd;
+}
+
+.four:hover {
+  text-decoration: none;
+  font-style: none;
+}
+.menu-item {
+  color: #cde;
+  cursor: pointer;
+  display: block;
+  font-size: var(--veryLargeFont);
+  padding: clamp(0.75rem, 0.65vw, 2rem) 0rem;
+  text-decoration: none;
+  transition: all 800ms ease;
+  position: relative;
+  text-shadow: #000 12px 12px 15px;
+  font-family: 'Cinzel';
+}
+
+.menu-item:hover::after {
+  content: '';
+  height: clamp(1rem, 4vw, 3rem);
+  width: clamp(1rem, 4vw, 3rem);
+  background-image: url('./pics/materium-logo.webp');
+  z-index: 3;
+  display: block;
+  bottom: 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  animation: bounce-in-out infinite 2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 20px #790cbd;
+}
+
+.orb,
+.orb2,
+.orb3,
+.orb4,
+.orb5 {
+  position: relative;
+  background: #3632cb;
+  border-radius: 50%;
+  z-index: 5;
+  opacity: .5;
+}
+.orb::before,
+.orb2::before,
+.orb3::before,
+.orb4::before,
+.orb5::before {
+  background: #fcfcfc;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  opacity: 1;
+  opacity: .5;
+}
+.orb::after,
+.orb2::after,
+.orb3::after,
+.orb4::after,
+.orb5::after {
+  background: #7a76ec;
+  border-radius: 50%;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  opacity: .5;
+}
+
+/* orb 1 */
+
+.orb {
+  width: 20px;
+  height: 20px;
+  bottom: 0px;
+  left: 50%;
+  animation: purpleOrb1 6s infinite;
+}
+.orb::before {
+  width: 8px;
+  height: 8px;
+  left: 6px;
+  top: 6px;
+}
+.orb::after {
+  width: 15px;
+  height: 15px;
+  left: 3px;
+  top: 3px;
+}
+
+@keyframes purpleOrb1 {
+  0% {
+    bottom: 0px;
+    opacity: 0;
+  }
+  10% {
+    left: 51%;
+    opacity: 1;
+  }
+  40% {
+    left: 49%;
+  }
+  90% {
+    bottom: 300px;
+    opacity: .0;
+  }
+  100% {
+    bottom: 310px;
+    opacity: 0;
+  }
+}
+
+/* orb2 */
+
+.orb2 {
+  width: 25px;
+  height: 25px;
+  bottom: 0px;
+  animation: purpleOrb2 10s infinite;
+}
+.orb2::before {
+  width: 12px;
+  height: 12px;
+  left: 6px;
+  top: 6px;
+}
+.orb2::after {
+  width: 20px;
+  height: 20px;
+  left: 3px;
+  top: 3px;
+}
+
+@keyframes purpleOrb2 {
+  0% {
+    bottom: 20vh;
+    opacity: 0;
+    left: 30%;
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    left: 40%;
+  }
+  80% {
+    bottom: 30vh;
+    opacity: 0;
+    left: 50%;
+
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* orb3 */
+
+.orb3 {
+  width: 20px;
+  height: 20px;
+  bottom: 0px;
+  animation: purpleOrb3 15s infinite;
+}
+.orb3::before {
+  width: 8px;
+  height: 8px;
+  left: 6px;
+  top: 6px;
+}
+.orb3::after {
+  width: 15px;
+  height: 15px;
+  left: 2px;
+  top: 2px;
+}
+
+@keyframes purpleOrb3 {
+  0% {
+    bottom: 20vh;
+    opacity: 1;
+    left: 70%;
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    left: 60%;
+  }
+  60% {
+    bottom: 40vh;
+    opacity: 0.3;
+    left: 65%;
+
+  }
+  100% {
+    bottom: 50vh;
+    left: 72%;
+    opacity: 0;
+  }
+}
+
+/* orb4 */
+
+.orb4 {
+  width: 20px;
+  height: 20px;
+  bottom: 0px;
+  animation: purpleOrb4 10s infinite;
+}
+.orb4::before {
+  width: 8px;
+  height: 8px;
+  left: 6px;
+  top: 6px;
+}
+.orb4::after {
+  width: 15px;
+  height: 15px;
+  left: 2px;
+  top: 2px;
+}
+
+@keyframes purpleOrb4 {
+  0% {
+    bottom: 0vh;
+    opacity: 1;
+    left: 90%;
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    left: 60%;
+  }
+  60% {
+    bottom: 20vh;
+    opacity: 0.3;
+    left: 70%;
+
+  }
+  100% {
+    bottom: 25vh;
+    left: 68%;
+    opacity: 0;
+  }
+}
+
+/* orb5 */
+
+.orb5 {
+  width: 25px;
+  height: 25px;
+  bottom: 0px;
+  animation: purpleOrb5 6s infinite;
+}
+.orb5::before {
+  width: 12px;
+  height: 12px;
+  left: 6px;
+  top: 6px;
+}
+.orb5::after {
+  width: 22px;
+  height: 22px;
+  left: 2px;
+  top: 2px;
+}
+
+@keyframes purpleOrb5 {
+  0% {
+    bottom: 20vh;
+    opacity: 1;
+    left: 10%;
+  }
+  10% {
+    opacity: 1;
+  }
+  33% {
+    left: 5%;
+  }
+  66% {
+    opacity: 0.3;
+    left: 7%;
+
+  }
+  100% {
+    bottom: 50vh;
+    left: 7%;
+    opacity: 0;
+  }
+}
+
+@keyframes bounce-in-out {
+  0% {
+    left: clamp(-3rem, -4vw, -6rem);
+  }
+  50% {
+    left: clamp(-4rem, -6vw, -8rem);  
+  }
+  100% {
+    left: clamp(-3rem, -4vw, -6rem);   
+  }
+}
+
+@keyframes bounce-in-out-top {
+  0% {
+    left: -15px;
+  }
+  50% {
+    left: -20px;
+  }
+  100% {
+    left: -15px;    
+  }
+}
+
+@keyframes bounce-in-out-small {
+  0% {
+    left: clamp(-1.5rem, -4vw, -6rem);
+  }
+  50% {
+    left: clamp(-2rem, -6vw, -8rem);  
+  }
+  100% {
+    left: clamp(-1.5rem, -4vw, -6rem);   
+  }
+}
+
+/*nav bar*/
+
+div{
+  box-sizing: border-box;
+}
+nav{
+  margin: 0;
+  padding: 0;
+  z-index: 4;
+  background: #111;
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  color: #cde;
+}
+
+.nav-links {
+  display: flex;
+  justify-content:space-around;
+  width: 50%;
+}
+.nav-links a {
+  display: block;
+  text-decoration: none;
+  color: #cde;
+  border-bottom:2px solid transparent;
+  transition:0.5s ease;
+  transform: translateX(0%);
+}
+.nav-links a:hover{
+  color:#ecbc62;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #790cbd;
+
+}
+.nav-links > a:hover::after, 
+.dropdown > button:hover::after, 
+.dropdown > button:focus::after
+{
+  content: '';
+  height: .75rem;
+  width: .75rem;
+  background-image: url('./pics/materium-logo.webp');
+  z-index: 3;
+  display: block;
+  bottom: 20%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  animation: bounce-in-out-top infinite 2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px #790cbd;
+}
+.burger{
+  display: none;
+}
+.burger div{
+  width: 25px;
+  height: 3px;
+  background: #cde;
+  margin: 5px;
+  transition:all 0.5s ease;
+  z-index: 4;
+}
+
+@keyframes navLinkFade{
+  from{
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.toggle .line1{
+   transform: rotate(-45deg) translate(-5px,6px );
+}
+.toggle .line2{
+   opacity: 0;
+}
+.toggle .line3{
+   transform: rotate(45deg) translate(-5px,-6px );
+}
+
+/*dropdown content*/
+/* Dropdown Button */
+.dropdown {
+  position: relative;
+}
+
+.link {
+  background-color: transparent;
+  border: none;
+  font-size: var(--mediumFont);
+  color: #ecbc62;
+  cursor: pointer;
+  text-shadow: 0 2px 8px #790cbd;
+
+}
+
+.dropdown .dropdown-menu {
+  position: absolute;
+  left: calc(-100% - .25rem);
+  top: calc(100% + .25rem);
+  background-color: #111;
+  padding: .75rem;
+  border-radius: .25rem;
+  box-shadow: 0 5px 15px 0 black;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+  z-index: 5;
+}
+
+.dropdown.active > .link + .dropdown-menu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.dropdown.active > .link {
+  color: #ecbc62;
+  letter-spacing: 3px;
+  text-shadow: 0 2px 8px #790cbd;
+
+}
+
+.information-grid {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: .25rem;
+}
+
+.dropdown-links {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+}
+
+.dropdown button:hover{
+  color:#ecbc62;
+  transition: all 400ms ease;
+  height:-8%;
+  text-shadow: 0 2px 8px #790cbd;
+  transform: scale(1.1);
+}
+
+.dropdown-links  a {
+  font-size: var(--mediumFont);
+  padding:.1em;
+  padding-right: 1em;
+
+}
+
+.more-than-6 {
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+}
+
+.dropdown-links a::before {
+  content: '-';
+  padding: 1em;
+}
+.dropdown-heading {
+  padding: 1em;
+  color: #ecbc62;
+  text-shadow: 0 2px 8px #790cbd;
+}
+
+@media only screen and (max-width: 760px){
+  nav{
+    justify-content: space-between;
+    padding: 3vw 10vw;
+  }
+  .nav-links{
+    position: absolute;
+    right: 0;
+    top:8vh;
+    min-height:92vh;
+    background: #333;
+    flex-direction: column;
+    align-items: center;   
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    transform: translateX(100%);
+    transition:All 0.5s ease-in;
+    display: none;
+  }
+  .nav-links a{
+    opacity: 0;
+  }
+  .burger{
+    display: block;
+  }
+  button.link {
+    background-color: #11111160;
+    border-radius: 15px;
+    height: 150px;
+    width: 250px;
+    border: 3px solid #111;
+    box-shadow: 0 4px 12px 0 black;
+  }
+  button.link:focus {
+    background-color: #ccddee30;
+  }
+  .nav-links > a:hover::after, 
+.dropdown > button:hover::after, 
+.dropdown > button:focus::after {
+  display: none;
+}
+ 
+}
+@media only screen and (max-width: 640px){
+  nav{
+    justify-content: space-between;
+    padding: 3vw 10vw;
+  }
+  .menu-item:hover::after {
+    animation: bounce-in-out-small infinite 2s;  }
+}
+.nav-active{
+  transform: translateX(0);
+  z-index: 5;
+  display: flex;
+}
+@media only screen and (max-width: 460px){
+  .nav-links{
+    width: 100%;
+    transition:All 0.5s ease;
+  }
+  .dropdown .dropdown-menu {
+    left: 0%;
+  }
+  .more-than-6 {
+    grid-template-columns: repeat(1, max-content);
+  }
+}
+.nav-active{
+  transform: translateX(0);
+}
+
+/* homepage bottom */
+.homeMirandusDescriptionContainer {
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+  background-color: #050505;
+  border-top: 6px solid #cde;
+  box-shadow: 0 0 24px 6px #7a76ec;
+  width: 99vw;
+  padding-bottom: 5%;
+
+}
+.homeHeader {
+  font-family: 'Iowan';
+  margin: 5% 0%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: var(--veryLargeFont);
+  color: #cde;
+  text-shadow: 0px 4px 4px #7a76ec;
+  text-transform: uppercase;
+  white-space: pre-wrap;
+}
+.homeHeader > span {
+  font-family: 'Iowan';
+  color: #ecbc62;
+}
+.homeinfocont {
+  display: flex;
+  flex-direction: column;
+
+}
+.container {
+  width: 40%;
+  border: 4px solid #cde;
+  margin: 0% 5%;
+  box-shadow: 0 0 24px 6px #7a76ec, inset 0 0 4px 2px #cde;
+  transform: translateX(-100vw);
+}
+
+
+.homeSlideCont {
+  width: 100vw;
+  height: fit-content;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.homeDescriptionBOff,
+.homeDescriptionBOn {
+  color: #cde;
+  white-space: wrap;
+  display: flex;
+  text-align: center;
+  font-family: 'Iowan';
+  font-size: var(--mediumFont);
+  border: 4px solid #cde;
+  padding: 6% 4%;
+  position: relative;
+  margin: 1% 1%;
+  background-color: #111;
+  box-shadow: inset 0 0 44px 6px #000, inset 0 0 4px 2px #cde, 0 0 4px 2px #cde;
+  transform: translateY(200vh);
+}
+.leftBoxOff, .rightBoxOff,
+.leftBoxOn, .rightBoxOn {
+  display: flex;
+  text-align: center;
+  font-family: 'Iowan';
+  font-size: var(--mediumFont);
+  color: #cde;
+  border: 4px solid #cde;
+  background-color: #111;
+  padding: 2% 2%;
+  position: relative;
+  margin: 1% 1%;
+  box-shadow: inset 0 0 44px 6px #000, inset 0 0 4px 2px #cde, 0 0 4px 2px #cde;
+  order: 1;
+  transform: translateX(-100vw);
+  height: fit-content;
+  display: block;
+  max-width: 40vw;
+
+}
+.rightBoxOff {
+  order: 3;
+  transform: translateX(200vw);
+}
+.leftBoxOn {
+  animation: homeSlideL 1s;
+  transform: translate(0);
+  margin-left: 2%;
+  width: 20%;
+  order: 1;
+}
+.rightBoxOn {
+  animation: homeSlideR 1s;
+  transform: translate(0);
+  width: 20%;
+  margin-right: 2%;
+  order: 3;
+}
+.homeDescriptionBOn {
+  animation: homeSlideB 1s;
+  transform: translate(0);
+  order: 4;
+  display: block;
+  width: 100vw;
+}
+.leftBoxOn::first-letter,
+.rightBoxOn::first-letter,
+.homeDescriptionBOn::first-letter {
+  font-size: 30px;
+  color: #ecbc62;
+  font-family: 'MedievalSharp';
+}
+.homeDescription::before {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  width: 25px;
+  content: '•';
+  border-right: 3px solid #cde;
+  border-bottom: 3px solid #cde;
+  color: #cde;
+  display: flex;
+  justify-content: center;
+}
+.homeDescription::after {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 25px;
+  width: 25px;
+  content: '•';
+  border-left: 3px solid #cde;
+  border-bottom: 3px solid #cde;
+  color: #cde;
+  display: flex;
+  justify-content: center;
+}
+
+
+/*REACT*/
+  .r-displayedContainer {
+    margin: 2rem;
+    text-align: center;
+  }
+/*nav bar*/
+.nav {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+.navTitle {
+  font-size: 2rem;
+}
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 5rem;
+}
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  display: flex;
+  height: 100%;
+  padding: .25rem;
+  align-items: center;
+}
+.nav li.active {
+  background-color: #555;
+}
+.nav li:hover {
+  background-color: #777;
+}
+.nav-links {
+  display: block;
+  text-decoration: none;
+  color: #cde;
+  transform: translateX(0%);
+}
+.nav-links:hover,
+.dropdown-link:hover {
+  color:#ecbc62;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px #790cbd;
+  line-height: 180%;
+  text-decoration: none;
+}
+.nav-links:hover::after, 
+.dropdown > button:hover::after, 
+.dropdown > button:focus::after
+{
+  content: '';
+  height: .85rem;
+  width: .85rem;
+  background-image: url('./pics/materium-logo.webp');
+  z-index: 3;
+  display: block;
+  bottom: 30%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: absolute;
+  animation: bounce-in-out-top infinite 2s;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px #790cbd;
+}
+
+
+.r-exemplarBackground {
+  background-image: url('../mirandushub/pics/human-exemplar-background.png');
+  background-position: 30% 40%;
+}
+.r-background {
+  background-color: #111;
+  background-image: linear-gradient(#3774b117 .1em, transparent .1em), linear-gradient(90deg, #3774b117 .1em, transparent .1em);
+  background-size: 3em 3em;
+  background-position: 0% 0%;
+  background-size: 12vmin 12vmin;
+  min-height: 40vh;
+  max-height: max-content;
+  left: 0px;
+  position: absolute;
+  transition: opacity 800ms ease, 
+    background-size 800ms ease,
+    background-position 800ms ease;
+  width: 100vw;
+  z-index: -1;
+}
+.r-deedsBG,
+.r-monstersBG,
+.r-buildingsBG {
+  background-image: url('../mirandushub/pics/lightorangeBlueCitadel.jpg');
+  background-position: 0% 20%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.r-buildingsBG {
+  background-image: url('../mirandushub/pics/greyBGCitadel.jpg');
+  background-position: 0% 50%;
+}
+.r-monstersBG {
+  background-image: url('../mirandushub/pics/goblinAlter.jfif');
+  background-position: 0% 90%;
+}
+
+.bubbleDisplayerOn,
+.bubbleDisplayerOff,
+.bubbleDisplayer {
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  position: fixed;
+  bottom: 3vh;
+  right: 3vw;
+  cursor: pointer;
+  color:#ecbc62;
+  text-shadow: #790cbd 0px 2px 5px;
+  font-weight: 600;
+  font-size: calc(var(--mediumFont) - .2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  border: 6px solid #ecbc62;
+  box-shadow: 0 0 8px 8px #790cbd, inset  0px 0px 8px 2px #ecbc62;
+  ;
+  animation: mtrm ease infinite 5s;
+  z-index: 999999;
+}
+.bubbleDisplayerOn {
+  animation: slide-up 2s, hover ease 4s infinite, mtrm ease infinite 3s;
+  bottom: 27vh;
+}
+.bubbleDisplayerOff {
+  animation: slide-down 1s, hover ease 4s infinite, mtrm ease infinite 3s;
+  bottom: 3vh;
+}
+
+
+@keyframes slide-up {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 30%;
+  }
+  100% {
+    bottom: 27%;
+  }
+}
+@keyframes slide-down {
+  0% {
+    bottom: 27%;
+  }
+  50% {
+    bottom: 0;
+  }
+  100% {
+    bottom: 3%;
+  }
+}
+@keyframes hover {
+  0% {
+    transform: translateY(0%);
+  }
+  50% {
+    transform: translateY(10%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+@keyframes hover-background {
+  0% {
+    transform: translateY(2%);
+  }
+  50% {
+    transform: translateY(12%);
+  }
+  100% {
+    transform: translateY(2%);
+  }
+}
+
+.r-bubbleCont {
+  position: fixed;
+  display: flex;
+  overflow: auto;
+  scroll-behavior: smooth;
+  flex-wrap: nowrap;
+  bottom: 0vh;
+  width: 110%;
+  left: 100vw;
+  justify-content: space-evenly;
+  background-color: #111;
+  border: 8px solid #1c2026;
+  border-radius: 5px;
+  padding-left: 25%;
+  padding-right: 25%;
+  box-shadow: 5px -4px 25px black;
+  padding-top: 1%;
+  z-index: 1;
+
+}
+.r-bubbleCont::-webkit-scrollbar {
+  display: none;
+}
+
+.r-scrollBtnL,
+.r-scrollBtnR,
+.r-scrollBtnTR,
+.r-scrollBtnTL {
+  background-color: #1c2026;
+  background-image: url('../mirandushub/pics/arrow.png');
+  width: 50px;
+  height: 7rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
+  z-index: 10;
+  scroll-behavior: smooth;
+  scroll-snap-type: proximity;
+  border-radius: 15%;
+  padding: 25px;
+  box-shadow: inset 5px -4px 25px black, 0 0 14px black;
+
+}
+.r-scrollBtnR {
+  right:8px;
+
+}
+.r-scrollBtnL {
+  animation: slide-in-btn 1s ease;
+  transform: rotate(180deg);
+  left:8px;
+}
+.r-scrollBtnTL,
+.r-scrollBtnTR {
+  height: 260px;
+  top: 30px;
+  padding: 1rem;
+}
+.r-scrollBtnTR {
+  right: 2.5rem;
+}
+.r-scrollBtnTL {
+  left: 1.5rem;
+  transform: rotate(180deg);
+
+}
+.r-scrollBtnL:active,
+.r-scrollBtnR:active,
+.r-scrollBtnTL:active,
+.r-scrollBtnTR:active {
+  background-color: #333;
+  box-shadow: inset 5px -4px 15px black, 0 0 7px black;
+}
+.r-scrollBtnR:active,
+.r-scrollBtnTR:active {
+  transform: scale(.95);
+}
+.r-scrollBtnL:active,
+.r-scrollBtnTL:active {
+  transform: scale(.95) rotate(180deg);
+}
+
+
+.r-bubbleCont.active {
+  animation: slide-in 1s;
+  left: 0px;
+  z-index: 1;
+}
+.r-bubbleCont.notActive {
+  animation: slide-out 1s;
+  left: 100vw;
+  z-index: 1;
+
+
+}
+.r-bubblesCont::-webkit-scrollbar {
+  display: none;
+}
+.r-topNavBubbles {
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  animation: mtrm 4s infinite, hover 3s infinite;
+  position: relative;
+}
+.r-topNavBubbles:hover {
+  cursor: pointer;
+}
+
+
+.parentBuildingCont {
+  display: flex;
+  justify-content: space-around;
+}
+
+.r-deedOuterCont,
+.r-buildingOuterCont,
+.r-monstersOuterCont {
+  height: fit-content;
+  width: 80%;
+  border: 3px solid #cde;
+  box-shadow: 0 0 24px 6px #7a76ec, inset 0 0 4px 2px #cde;
+  margin: 8% 9%;
+}
+.r-buildingOuterCont,
+.r-monstersOuterCont {
+  width: 50%;
+  height: 30vh;
+  margin: 0;
+}
+.r-monstersOuterCont {
+  height: fit-content;
+  box-shadow: 0 0 24px 6px #461102, inset 0 0 4px 2px #cde;
+
+}
+.r-deedInfoCont,
+.r-buildingInfoCont,
+.r-monstersInfoCont {
+  border: 3px solid #cde;
+  margin: .5%;
+  position: relative;
+  background: radial-gradient(#3630cd40, #000);
+}
+.r-monstersInfoCont {
+  background: radial-gradient(#461102, #000);
+
+}
+.r-buildingInfoCont,
+.r-monstersInfoCont {
+  width: 99%;
+  height: 97%;
+  color: #cde;
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+}
+
+.r-deedInfoCont::before,
+.r-buildingInfoCont::before,
+.r-monstersInfoCont::before {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 25px;
+  width: 25px;
+  content: '•';
+  border-right: 3px solid #cde;
+  border-bottom: 3px solid #cde;
+  color: #cde;
+  display: flex;
+  justify-content: center;
+}
+.r-deedInfoCont::after,
+.r-buildingInfoCont::after,
+.r-monstersInfoCont::after {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 25px;
+  width: 25px;
+  content: '•';
+  border-left: 3px solid #cde;
+  border-bottom: 3px solid #cde;
+  color: #cde;
+  display: flex;
+  justify-content: center;
+}
+
+
+.r-buildingDescription,
+.r-monstersDescription {
+  display: flex;
+  justify-content: center;
+  padding:2vw;
+  font-family: 'Iowan';
+  font-size: var(--mediumFont);
+  border-bottom: 2px solid white;
+  width: 100%;
+  height: 50%;
+  align-items: center;
+  text-align: center;
+  white-space: pre-wrap;
+}
+.r-monstersDescription {
+  border: none;
+  align-items: center;
+}
+.r-buildingInfo,
+.r-monstersInfo {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.r-monstersInfo {
+  height: fit-content;
+  padding: 3%;
+}
+.r-buildingInfo  div {
+  border-right: 2px solid white;
+}
+.r-buildingInfo div:nth-child(3) {
+  border: none;
+}
+.r-buildingSize, 
+.r-buildingRarity, 
+.r-buildingTotal {
+  width: 33.3%;
+  box-sizing: border-box;
+  padding: 0% 5%;
+  transform: translateY(-15%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Iowan';
+  font-size: var(--mediumFont);
+}
+.r-monstersSize {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.r-buildingSize span, 
+.r-buildingRarity span, 
+.r-buildingTotal span {
+  color: #ecbc62;
+  font-family: 'Iowan';
+}
+
+.r-monstersSize span {
+  font-family: 'Iowan';
+  text-transform: lowercase;
+}
+.r-monstersSize span::first-letter {
+  text-transform: capitalize;
+
+}
+.r-namePlate {
+  position: absolute;
+  z-index: 10;
+  font-size: var(--mediumFont);
+  bottom: 110%;
+  color: #ecbc62;
+  width: max-content;
+  top: -35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.r-deedPic, .r-monsterPic {
+  border: 6px solid white;
+  width:35%;
+  box-shadow: 0 0 14px 6px #7a76ec;
+}
+.r-monsterPic {
+  box-shadow: 0 0 14px 6px #461102;
+  width: 100%;
+
+}
+
+@keyframes slide-in-btn {
+  0% {
+    left: 100vw;
+  }
+  80% {
+    left: -3vw;
+  }
+  100% {
+    left: 8px;
+  }
+}
+@keyframes slide-in {
+  0% {
+    left: 100vw;
+  }
+  80% {
+    left: -3vw;
+  }
+  100% {
+    left: 0;
+  }
+}
+@keyframes slide-out {
+  0% {
+    left: 0;
+  }
+  20% {
+    left: -3vw;
+  }  
+  100% {
+    left: 100vw;
+
+  }
+}
+@keyframes top-drift-in {
+  0% {
+    border-radius: 50% 50% 50% 50%;
+  }
+  5% {
+    border-radius: 40% 100% 50% 50%;
+  }
+  90% {
+    border-radius: 100% 40% 50% 50%;
+  }
+  100% {
+    border-radius: 50% 50% 50% 50%;
+  }
+}
+.r-bubbleBtn {
+  border-radius: 50%;
+  display: flex;
+  height: 5rem;
+  width: 5rem;
+  margin: 3% 4% 1.5% 4%;
+  position: relative;
+  z-index: 1;
+  background-color: transparent;
+  border: none;
+}
+.r-bubbleBtn::before {
+  content: '';
+  position: absolute;
+  background:  linear-gradient(#ecbc62, #cfb612, #685a03);
+  box-shadow: 0 0 8px 8px #790cbd;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50% 50%;
+  z-index: -1;
+  transform: scale(1.05);
+  cursor: pointer;
+  animation: top-drift-in ease-out 2s, mtrm ease infinite 5s, hover-background 3s infinite;
+  ;
+  
+
+}
+.r-bubbleBtn:hover::before {
+  transform: scale(1.05);
+}
+
+@keyframes mtrm {
+  from {
+    transform: rotate(0deg), scale(1.1);
+  }
+  to {
+    transform: rotate(360deg), scale(1.1);
+  }
+  0% {
+    border-radius: 50% 50% 50% 45%;
+  }
+  25% {
+    border-radius: 37% 50% 43% 50%;
+
+  }
+  50% {
+    border-radius: 37% 40% 50% 50%;
+
+  }
+  75% {
+    border-radius: 45% 50% 37% 50%;
+
+  }
+  100% {
+    border-radius: 50% 50% 50% 45%;
+
+  }
+}
+
+.r-bubbleBtn:hover {
+  opacity: 1;
+  transition: all 1s ease;
+  transform: scale(1.05);
+}
+
+.r-background section {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 5%;
+}
+.r-charName,
+.r-monstersName {
+  color: #ecbc62;
+  font-size: calc(var(--veryLargeFont) - .6rem);
+  width: 100%;
+  text-align: center;
+  margin-top: 15vh;
+  margin-bottom: 5vh;
+  margin-left:30%;
+}
+.r-monstersName {
+  color: #ddd;
+  text-shadow: 0 10px 14px #461102;
+
+}
+.r-deedName {
+  color: #ecbc62;
+  font-size: var(--veryLargeFont);
+  width: 100%;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  position: relative;
+  margin-bottom: 2%;
+
+}
+.r-deedName::before {
+  font-size: var(--smallFont);
+  content: 'The';
+  position: absolute;
+  top: 17%;
+  transform: translatex(-40px);
+  color: #cde;
+}
+.r-deedNameBanner {
+  background: linear-gradient(#000, #050505);
+  width: 80%;
+  border: 4px solid #cde;
+  height: fit-content;
+  padding: 40px 100px;
+  margin-top: 10vh;
+  margin-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  border-radius: 15px;
+
+}
+.r-charImg,
+.r-charVid {
+  height: fit-content;
+  width: 100%;
+  border-radius: 15px;
+  border: 4px solid #ecbc62;
+  box-shadow: 0 6px 20px #790cbd;
+}
+.r-charImg {
+  display: none;
+}
+.r-contForVid {
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+.r-contForPic {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.r-deedStats {
+  display: flex;
+  flex-wrap: wrap;
+  color: #cde;
+  justify-content: space-around;
+}
+
+.r-deedStats span {
+  display: block;
+  font-size:var(--mediumFont);
+  text-decoration: underline;
+  color: #f1d832;
+  letter-spacing: 1px;
+
+}
+.r-deedStats > span {
+  display: block;
+  width: 100%;
+  margin: 2%;
+  font-size: var(--largeFont);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #ecbc62;
+}
+.r-deedStats li > span {
+  display: flex;
+  font-size: var(--mediumFont);
+  text-decoration: none;
+  margin-right: 2%;
+}
+.r-deedStats li > span::before {
+  content: '✦';
+  transform: translatex(-5px) scale(.7);
+}
+.r-deedStats > ul {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.r-deedStats  li {
+  margin: 2%;
+  width: 250px;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.r-charInfoCont {
+  display: flex;
+  flex-wrap: wrap;
+  width: 60%;
+  justify-content: space-around;
+  border: 4px solid #ecbc62;
+  box-shadow: 0 6px 20px #790cbd;
+  background-color: #790cbd08;
+  border-radius: 50% / 10%;
+  padding: 2%;
+  align-items: center;
+}
+.r-deedInnerInfoCont {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  height: fit-content;
+  justify-content: space-around;
+  border: 4px solid #ecbc62;
+  box-shadow: 0 6px 20px #790cbd;
+  background-color: #790cbd08;
+  border-radius: 50% / 10%;
+  padding: 2%;
+  align-items: center;
+}
+.r-charDescription {
+  color: whitesmoke;
+  font-size: var(--mediumFont);
+  order: 3;
+  height: fit-content;
+  text-align: center;
+  line-height: 1.5em;
+  padding: 1em;
+  padding-bottom: 3em;
+  white-space: pre-wrap;
+  font-family: iowan;
+}
+.r-deedDescription {
+  color: whitesmoke;
+  font-size: var(--mediumFont);
+  height: fit-content;
+  width: 100%;
+  text-align: center;
+  white-space: pre-wrap;
+  font-family: iowan;
+}
+.r-abilName {
+  color: #ecbc62;
+  font-size: var(--mediumFont);
+  order: 4;
+  height: fit-content;
+  width: fit-content;
+
+
+}
+.r-abilName span,
+.r-abilDesc span {
+  color: whitesmoke;
+  font-size: var(--largeFont);
+  font-family: iowan;
+  display: block;
+  text-decoration: underline;
+  line-height: 175%;
+  width: 100%;
+  
+}
+
+.r-abilImg {
+  font-size: var(--largeFont);
+  height: 8rem;
+  width: fit-content;
+  order: 5;
+  width: 10%;
+}
+.r-abilDesc {
+  font-size: var(--largeFont);
+  color: #ecbc62;
+  order: 6;
+  width: 45%;
+}
+
+
+.r-raceSelectorTitle,
+.r-deedSelectorTitle,
+.r-buildingSelectorTitle,
+.r-monsterSelectorTitle,
+.r-aboutTitles {
+  font-family: 'Iowan';
+  text-align: center;
+  padding: 3%;
+  margin: 0 auto;
+  color: #ecbc62;
+  font-size: var(--veryLargeFont);
+  letter-spacing: 5px;
+  line-height: 1;
+  border: 6px solid #ecbc6220;
+  width: fit-content;
+  background-color: #11111199;
+  box-shadow: inset 0 0 30px 10px black;
+  display: flex;
+
+}
+.r-buildingSelectorTitle {
+  border: 4px solid #7a76ec30;
+}
+.r-deedSelectorTitle {
+  border: 4px solid #7a76ec30;
+  background-color: #00000099;
+}
+.r-monsterSelectorTitle {
+  color: #b43131;
+  border: 4px solid #b4313130;
+  background-color: #000000cc;
+
+}
+.r-raceSelectorTitle::before {
+  content: 'E';
+  font-size: var(--dropCaseFont);
+  float: left;
+}
+.r-raceSelectorTitle::after {
+  content: 'S';
+  font-size: var(--dropCaseFont);
+  float: right;
+}
+.r-deedSelectorTitle::before {
+  content: 'D';
+  font-size: var(--dropCaseFont);
+  float: left;
+}
+.r-deedSelectorTitle::after {
+  content: 'S';
+  font-size: var(--dropCaseFont);
+  float: right;
+}
+.r-buildingSelectorTitle::before {
+  content: 'B';
+  font-size: var(--dropCaseFont);
+  float: left;
+}
+.r-buildingSelectorTitle::after {
+  content: 'S';
+  font-size: var(--dropCaseFont);
+  float: right;
+}
+.r-monsterSelectorTitle::before {
+  content: 'M';
+  font-size: var(--dropCaseFont);
+  float: left;
+}
+.r-monsterSelectorTitle::after {
+  content: 'S';
+  font-size: var(--dropCaseFont);
+  float: right;
+}
+
+.r-raceSelector,
+.r-deedSelector,
+.r-buildingSelector,
+.r-monsterSelector {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  background: linear-gradient(#000, #111, #222, #111, #000);
+  height: 20rem;
+  box-shadow: inset  3px 3px 15px 3px #000;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+}
+.r-buildingSelector {
+  justify-content: start;
+  padding: 0 100px;
+}
+*::-webkit-scrollbar {
+  width: 16px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 10px;
+  margin-right: 200px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: #333;
+  border-radius: 10px;
+
+}
+.r-raceSelectorContainer,
+.r-deedSelectorContainer,
+.r-buildingSelectorContainer,
+.r-monsterSelectorContainer {
+  margin: auto;
+  background-position:center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  perspective: 1000px;
+
+
+}
+
+
+.r-race {
+  margin: auto;
+  font-size: var(--mediumFont);
+  color: #cde;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  text-shadow: black 0 12px 13px;
+  font-weight: 700;
+}
+
+
+.r-raceNames,
+.r-deedNames {
+  display: flex;
+  justify-content:center;
+  color: #ecbc62;
+  text-shadow: 5px 5px 15px #410e58;
+  font-size: calc(var(--largeFont) + .5rem);
+  height: 150%;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+.r-raceNames::after,
+.r-deedNames::after {
+  position: absolute;
+  border: 4px solid black;
+  background-color: #1c2026;
+  content: '';
+  width: 165px;
+  height: 3rem;
+  z-index: -1;
+  border-radius: 15%;
+  transition: all 1s ease;
+  box-shadow: inset  3px 3px 15px 3px #000;
+}
+
+.r-buildingNames,
+.r-monsterNames {
+  color: #ecbc62;
+  height: 60px;
+  border-top: 1px solid #917d00;
+  border-bottom: 1px solid #917d00;
+  width: 170px;
+  transform: translatex(-80px) translateY(33px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(#000, #222);
+  display: block;
+  font-size: calc(var(--largeFont) + .1rem);
+
+}
+.r-buildingNames > span {
+  font-size: calc(var(--smallFont) - 0.2rem);
+  display: block;
+}
+.r-monsterNames {
+  transform: translatex(-80px) translateY(100px);
+  font-size: calc(var(--largeFont) + .3rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #b4313190;
+  border-top: 3px solid #b4313190;
+  border-bottom: 3px solid #b4313190;
+  box-shadow: inset 0 0 5px 2px #130400;
+  font-weight: bold;
+  border-radius: 20%;
+
+}
+
+.r-Homestead:hover .r-deedNames::after {
+  border: 4px solid #119a00;
+}
+.r-Humans:hover .r-raceNames::after,
+.r-Outpost:hover .r-deedNames::after,
+.r-Hamlets:hover .r-deedNames::after {
+  border: 4px solid #1c5d84;
+}
+.r-Orcs:hover .r-raceNames::after,
+.r-Dwarves:hover .r-raceNames::after,
+.r-Villages:hover .r-deedNames::after {
+  border: 4px solid #410e58;
+}
+.r-Halflings:hover .r-raceNames::after,
+.r-Towns:hover .r-deedNames::after {
+  border: 4px solid #cde;
+}
+.r-Elves:hover .r-raceNames::after,
+.r-Citadels .r-deedNames::after {
+  border: 4px solid #000;
+}
+
+
+.r-Humans::after{
+  background-image: url('../components/NFTpics/humans/human-exemplar-figure.png'), 
+  linear-gradient(to top left, #1c5d84, #50a0d1, #bfeafc);
+}
+
+.r-Dwarves::after {
+  background-image: urL('../components/NFTpics/dwarves/dwarf-exemplar-figure.png'),
+  linear-gradient(to top left, #410e58, #a359c4, #ffe5ff )
+}
+
+.r-Orcs::after {
+  background-image: url('../components/NFTpics/orcs/orc-exemplar-figure.png'),
+  linear-gradient(to top left, #410e58, #a359c4, #ffe5ff )
+}
+
+.r-Halflings::after {
+  background-image: url('../components/NFTpics/halflings/halfling-exemplar-figure.png'),
+  linear-gradient(to top left, #cde, #c19829, #feecbd);
+}
+
+.r-Elves::after {
+  background-image: url('../components/NFTpics/elves/elf-exemplar-figure.png'),
+  linear-gradient(to top left, #000, #111, #474545);
+}
+
+
+.r-Homestead::after {
+  background-image: url('../components/NFTpics/landDeeds/homestead/homesteadNoBG.png'),
+  linear-gradient(to top left, #053000, #1c990c, #053000);
+}
+.r-Outpost::after {
+  background-image: url('../components/NFTpics/landDeeds/outpost/outpostNoBG.png'),
+  linear-gradient(to top left, #1c5d84, #50a0d1, #1c5d84);
+}
+.r-Hamlets::after {
+  background-image: url('../components/NFTpics/landDeeds/hamlet/farmingHamletNoBG.png'),
+  linear-gradient(to top left, #1c5d84, #50a0d1, #1c5d84);
+}
+.r-Villages::after {
+  background-image: url('../components/NFTpics/landDeeds/village/villageOfTheBaronNoBG.png'),
+  linear-gradient(to top left, #410e58, #a359c4, #410e58 )
+}
+.r-Towns::after {
+  background-image: url('../components/NFTpics/landDeeds/town/townOfThePrinceNoBG.png'),
+  linear-gradient(to top left, #cde, #c19829, #cde);
+}
+
+.deed::after {
+  background-image: url('../components/NFTpics/buildings/archery/archery.png');
+}
+
+
+.r-Humans, .r-Dwarves, .r-Orcs, .r-Halflings, .r-Elves,
+.r-Homestead, .r-Outpost, .r-Hamlets, .r-Villages, .r-Towns,
+.card {
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  border: 3px solid #111;
+  padding: 5rem;
+  border-radius: 10%;
+  margin: 1vh 2vw;
+  border: 4px solid #000;
+  width: 175px;
+  transition: transform ease .25s;
+  transform-style: preserve-3d;
+  height: 280px;
+  box-shadow: 0 0 14px 3px black;
+}
+
+.r-Humans:active,
+.r-Dwarves:active,
+.r-Orcs:active,
+.r-Halflings:active,
+.r-Elves:active {
+  border: 1px solid whitesmoke;
+}
+
+/*.r-Humans:hover .r-Humans,
+.r-raceSelector:hover .r-Dwarves,
+.r-raceSelector:hover .r-Orcs,
+.r-raceSelector:hover .r-Halflings,
+.r-raceSelector:hover .r-Elves {
+  transform: rotateY(180deg);
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}*/
+
+
+.r-Humans::before, .r-Dwarves::before, .r-Orcs::before, .r-Halflings::before, .r-Elves::before,
+.r-Homestead::before, .r-Outpost::before, .r-Hamlets::before, .r-Villages::before, .r-Towns::before,
+.card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10%;
+  animation: glowing 8s linear infinite;
+}
+
+.r-Homestead::before {
+  background: linear-gradient(45deg, #28ff0d, #17d200, #12a800, #12a800, #17d200, #28ff0d);
+  background-size: 400%;
+}
+.r-Humans::before,
+.r-Outpost::before,
+.r-Hamlets::before {
+  background: linear-gradient(45deg, #56a6d7, #4796c5, #2f75a0, #2f75a0, #4796c5, #56a6d7  );
+  background-size: 400%;
+}
+.r-Dwarves::before,
+.r-Orcs::before,
+.r-Villages::before {
+  background: linear-gradient(45deg, #ffcfff, #da89ff, #a75cc8, #a75cc8, #da89ff, #ffcfff   );
+  background-size: 400%;
+}
+.r-Halflings::before,
+.r-Towns::before {
+  background: linear-gradient(45deg, #fff0cb, #e8c059, #b38d23, #b38d23, #e8c059, #fff0cb );
+  background-size: 400%;
+}
+.r-Elves::before {
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  background-size: 400%;
+}
+.card::before {
+  background: linear-gradient(45deg, #7a76ec30, #7a76ec, #7a76ec70);
+  background-size: 500%;
+}
+.monsters::before {
+  background: linear-gradient(45deg, #461102, #911212, #461102);
+  background-size: 500%;
+}
+
+
+.r-Humans:active, .r-Dwarves:active, .r-Orcs:active, .r-Halflings:active, .r-Elves:active,
+.r-Homestead:active, .r-Outpost:active, .r-Hamlets:active, .r-Villages:active, .r-Towns:active,
+.card {
+  transform: scale(.93);
+  transition: .1s ease all;
+}
+
+.r-Humans:hover::before, .r-Dwarves:hover::before, .r-Orcs:hover::before, .r-Halflings:hover::before, .r-Elves:hover::before,
+.r-Homestead:hover::before, .r-Outpost:hover::before, .r-Hamlets:hover::before, .r-Villages:hover::before, .r-Towns:hover::before,
+.card:hover::before {
+  opacity: 1;
+}
+
+.r-Humans::after, .r-Dwarves::after, .r-Orcs::after, .r-Halflings::after, .r-Elves::after,
+.r-Homestead::after, .r-Outpost::after, .r-Hamlets::after, .r-Villages::after, .r-Towns::after,
+.card::after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 8%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset  3px 3px 15px 3px #000;
+}
+.card::after {
+  background-size: cover;
+}
+.r-Homestead::after, .r-Outpost::after, .r-Hamlets::after, .r-Villages::after, .r-Towns::after {
+  background-size: cover;
+}
+.r-Goblins::after {
+  background-image: url('../components/NFTpics/monsters/Goblins/goblin3.jpg');
+  background-size: 200%;
+}
+.r-Trolls::after {
+  background-image: url('../components/NFTpics/monsters/Trolls/Troll2.png');
+  background-size: 400%;
+  background-position: 50% 0%;
+}
+.r-Unknown1::after {
+  background-image: url('../components/NFTpics/monsters/Unknown1/Unknown2.jpg');
+  background-size: 370%;
+  background-position: 20% 50%;
+}
+.r-Unknown2::after {
+  background-image: url('../components/NFTpics/monsters/Unknown2/Unknown3.jpg');
+  background-size: 370%;
+  background-position: 20% 50%;
+}
+.r-Minotaurs::after {
+  background-image: url('../components/NFTpics/monsters/Minotaurs/Mino1.jpg');
+  background-size: 500%;
+  background-position: 50% 25%;
+}
+
+
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  100% { background-position: 400% 0; }
+}
+
+.down80 {
+  margin-top: 80px;
+  position: relative;
+  
+}
+#parent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  position: relative;
+  height: 100%;
+}
+
+
+/*carousel*/
+
+.carouselCont {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+}
+
+.carousel-img {
+  object-fit: cover;
+  aspect-ratio: 3/2;
+  width: 30%;
+  background-color: black;
+  border: 4px solid #cde;
+  border-radius: 15px;
+}
+
+figure > div {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+}
+
+@keyframes hide {
+  0% {
+    opacity: 0;
+  }
+  65% {
+    opacity: 0;
+  }
+  66% {
+    opacity: .1;
+  }
+  100% {
+    opacity: 1;
+  }
+  
+}
+
+.hidden{
+  opacity: 0;
+  height: 0;
+  margin: none;
+}
+.shown {
+  opacity: 1;
+}
+.show::after {
+  content: '▲';
+  transform: translateX(8px);
+  
+}
+
+.hide::after {
+  content: '▼';
+  transform: translateX(8px);
+}
+
+
+@keyframes zoom-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+}
+
+.btnCont {
+  width: 35%;
+  display: flex;
+  justify-content: center;
+}
+.tavernTalesBtn,
+.monsterTavernTalesBtn {
+  border: 2px solid #ecbc62;
+  box-shadow: 0 2px 14px 1px #790cbd, inset 0 0 14px 8px #000;
+  background: #790cbd08;
+  color: #fff;
+  height: fit-content;
+  width:fit-content;
+  padding: 2% 5%;
+  border-radius: 25px;
+  font-size: var(--largeFont);
+  transition: .25s;
+  font-family: 'Iowan';
+  margin-top: 3%;
+  display: flex;
+  justify-self: start;
+}
+
+.tavernTalesBtn:hover,
+.monsterTavernTalesBtn:hover {
+  scale: 1.01;
+  filter: brightness(110%);
+}
+.tavernTalesBtn:active,
+.monsterTavernTalesBtn:active {
+  scale: 1;
+  filter: brightness(90%);
+
+}
+.tavernTalesContainer {
+  margin: 2% 10%;
+  white-space:pre-wrap;
+  font-family: 'Iowan';
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  justify-content: space-around;
+  text-align: left;
+  border: 4px solid #ecbc62;
+  box-shadow: 0 6px 20px #790cbd;
+  border-radius: 50% / 10%;
+  padding: 3%;
+  position: relative;
+  animation: zoom-in .5s ease;
+  line-height: 150%;
+  font-size: var(--largeFont);
+}
+.tavernTalesContainer::before {
+  background-image: url('../mirandushub/pics/tavern.jpg');
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  content: '';
+  border-radius: 50% / 10%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  opacity: .4;
+  filter: blur(2px);
+}
+.tavernTalesContainer span {
+  font-family: monospace;
+}
+
+#tavernTalesBGCover {
+  background-color: #00000090;
+  padding: 6%;
+  border-radius: 50% / 10%;
+}
+
+
+.type {
+  font-family: 'Iowan';
+  font-size: var(--mediumFont);
+
+}
+
+
+/* About page */
+
+
+.aboutPage {
+  width: 100vw;
+  color: white;
+  font-family: 'Iowan';
+}
+.aboutPageMiranudsTitle {
+  display: flex;
+  justify-content: center;
+  padding: 2% 3%;
+  color: #ecbc62;
+  border: 4px solid black;
+  width: fit-content;
+  border-radius: 25px;
+  margin: 0 auto;
+  box-shadow: 0 0 15px 5px black, 0 0 6px 3px black;
+  margin-bottom: 3%;
+}
+.aboutContentCont {
+  font-size: var(--mediumFont);
+  margin: 3% 8%;
+  padding: 3%;
+  border: 6px solid black;
+  width: fit-content;
+  border-radius: 25px;
+  background-color: #000;
+  box-shadow: 0 0 14px 4px #ecbc6220;
+}
+.aboutContentCont p,
+.aboutContentCont p b {
+  font-family: "Iowan";
+  text-indent: 25px;
+
+}
+.centered {
+  text-align: center;
+  font-size: var(--largeFont);
+  color: #ecbc62;
+  text-transform: uppercase;
+}
+
+.aboutHeader {
+  display: flex;
+  width: 100vw;
+  height: fit-content;
+  padding: 2%;
+  background-image: url('../mirandushub/pics/tavern.jpg');
+  border-bottom: 6px solid #ecbc6220;
+
+}
+#sig {
+  color: #ecbc62;
+  font-size: var(--largeFont);
+  text-transform: uppercase;
+}
+
+/* Explore */
+
+#menu-background-imageExplore {
+  background-image: url('../mirandushub/pics/stable.png');
+  height: 130vh;
+  background-size: 150%;
+}
+#menu-background-patternExplore {
+  max-height: 130vh;
+}
+.fullScreen {
+  max-height: 110vh;
+}
+
+.homeVidAboutMirandus {
+  order: 2;
+  margin: auto;
+  width: fit-content;
+  overflow: hidden;
+} 
+
+.social-links {
+  padding: 2.5rem;
+}
+
+.guildForm {
+  order: 1;
+  width: fit-content;
+}
+.guildCardCont {
+  display: flex;
+  order: 2;
+  transform-style: preserve-3d;
+}
+.guildCard-container {
+  position: relative;
+  perspective: 1200px;
+  padding: 25px;
+}
+
+.guildCard-container:hover {
+  cursor: pointer;
+}
+
+.guildCard {
+  position: relative;
+  width: 266px;
+  height: 400px;
+  transition: transform .75s, box-shadow .25s; /* add box-shadow transition */
+  box-shadow: 10px 50px 30px black, 10px 50px 30px black;
+  transform-style: preserve-3d;
+  margin: 50px;
+  border-radius: 25px;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none;
+  z-index: 1;
+  transform: rotateY(15deg);
+}
+
+.guildCard:hover {
+  transform: rotateY(0deg);
+  box-shadow: 10px 40px 50px black, 0 0 25px 15px #ffb70080;
+}
+.guildCard::before {
+  width: 276px;
+  height: 410px;
+  background: #ffb700;
+  border-radius: 15px;
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+}
+
+_::-webkit-full-page-media, _:future, :root .guildCard::before {
+  display: none;
+}
+_::-webkit-full-page-media, _:future, :root .guildCard {
+  border: 4px solid #ffb700;
+}
+
+.guildCard::after {
+  width: fit-content;
+  content: 'Mirandus Guild';
+  height: fit-content;
+  border: 2px solid #ffb700;
+  background-color: #222;
+  position: absolute;
+  transform: translateX(70%) translateY(-60%);
+  box-shadow: -.5px 0px 0px 1px black;
+  z-index: 2;
+  padding: 5px;
+  perspective: flat;
+  border-radius: 80% 80% 15% 15%;
+  font-size: var(--smallFont);
+  backface-visibility: hidden;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-radius: 25px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: inset 0px 0px 50px black;
+
+}
+
+.card-front {
+  z-index: 2;
+  background: linear-gradient(to bottom right, #cfaf6a 5%, #8a6e3d 30%, #231910);
+  background-image: contain;
+}
+
+.card-back {
+  background: linear-gradient(to bottom right, #cfaf6a 5%, #8a6e3d 30%, #231910);
+  background-image: contain;
+  transform: rotateY(180deg);
+  font-size: var(--largeFont);
+}
+
+.guildCard.flipped {
+  transform: rotateY(180deg);
+}
+
+.guildIMG {
+  height: 220px;
+  object-fit: contain;
+  margin: auto;
+  margin-bottom: 20px;
+  margin-top: 5px;
+  border: 0px;
+
+}
+
+.guildIMGBorder {
+  border: 2px solid #222;
+  box-shadow: 0 0 15px black;
+  border-radius: 50%;
+
+}
+
+.guildDescription {
+  display: flex;
+  font-size: calc(var(--mediumFont) - .15rem);
+  background: #111;
+  border: 2px solid #ffb700;
+  border-radius: 25px;
+  padding: 10px 2px;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  white-space: pre-line;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-size: cover;
+  background-position: 30% 60%;
+  box-shadow: 10px 30px 60px black, inset 0px 0px 150px black;
+  padding: 5px;
+
+}
+
+.guildName {
+  font-weight: bolder;
+  text-shadow:  1px 2px black;
+  position: relative;
+  width: 100%;
+  height: 90px;
+  z-index: 5;
+  color: #ecbc62;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.guildName::before {
+  width: calc(100% + 40px);
+  content: '';
+  height: 105px;
+  background-color: #111;
+  box-shadow: inset 0px 0px 40px black;
+  position: absolute;
+  top: 0;
+  left: -20px;
+  border-radius: 0% 0% 15% 15%;
+  z-index: -1;
+  transform: translateY(-10%);
+  border:  4px solid #ffb700;
+  display: flex;
+
+}
+.icons {
+  position: absolute;
+  bottom: 5px;
+  padding: 2px;
+}
+.icons a {
+  margin: 5px;
+  z-index: 5;
+  text-decoration: none;
+  color: #f1d832
+}
+.icons a:hover {
+  transition: ease-in-out .15s;
+}
+.discord:hover {
+  color:  #7289d9;
+  position: relative;
+}
+.youtube:hover {
+  color: #FF0000;
+  position: relative;
+}
+.youtube:hover::after,
+.discord:hover::after {
+  content: '';
+  background-color: white;
+  height: 10px;
+  width: 15px;
+  position: absolute;
+  top: 30%;
+  left: 20%;
+  z-index: -1;
+
+}
+.website:hover {
+  color: whitesmoke;
+}
+
+.fullpage {
+  height: 100vh;
+  width: 100vw;
+  background-color: #111;
+  background-image: linear-gradient(#3774b117 .1em, transparent .1em), linear-gradient(90deg, #3774b117 .1em, transparent .1em);
+  background-size: 3em 3em;
+  background-position: 0% 0%;
+  background-size: 12vmin 12vmin;
+  z-index: -1;
+}
+
+.vox {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: 125px;
+  width: auto;
+  z-index: 1000;
+  transition: .25s ease-out;
+
+}
+.vox:hover {
+  background: #ccddee95;
+  border-radius: 30%;
+  box-shadow: 0 0 40px 10px #cde;
+}
+.chatBubble {
+  opacity: 1;
+  z-index: 1000;
+  width: 300px;
+  height: 200px;
+  position: fixed;
+  bottom: 30px;
+  right: 115px;
+  transform: rotate(-5deg) scale(5%);
+  transform-origin: bottom right;
+  animation: chatbubble-appear 0.25s forwards;
+}
+
+.chatBubbleText {
+  width: 230px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  z-index: 1001;
+  position: fixed;
+  color: black;
+  right: 160px;
+  bottom: 100px;
+  font-size: var(--largeFontSize);
+  font-weight: 700;
+  transform: rotate(-5deg) scale(5%);
+  transform-origin: bottom right;
+  animation: chatbubble-appear 0.25s forwards;
+}
+
+@keyframes chatbubble-appear {
+  0% {
+    transform: rotate(10deg) scale(5%);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(-5deg) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes chatbubble-disappear {
+  0% {
+    transform: rotate(-5deg) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(10deg) scale(5%);
+    opacity: 0;
+  }
+}
+
+.guildAppHeader {
+  height: 20vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  font-size: var(--veryLargeFont);
+  background-color: white;
+  border: 10px solid black ;
+  background-image: url('../mirandushub/pics/tavern.jpg');
+  background-position: 100% 70%;
+  color: #f1d832;
+  text-shadow: 0 0 50px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black, 5px 5px 15px black;
+  font-weight: bold;
+  box-shadow: inset 0 0 100px 30px black;
+  background-size: cover;
+  filter: brightness(.9);
+  align-items: center;
+
+}
+
+.guildApp {
+  color: white;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+
+}
+.guildAppCont {
+  width: 80%;
+  color: #ecbc62;
+  background-color: #111;
+  border-radius: 25px;
+  border: 4px solid #ffb700;
+  box-shadow: 10px 30px 60px black, inset 0px 0px 400px black;
+  filter: brightness(90%);
+  min-height: 80vh;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: left;
+  margin-top: 5%;
+  padding: 3%;
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none;
+  margin-bottom: 4%;
+}
+.guildAppCont input,
+.guildAppCont textarea {
+  padding: 5px;
+  margin: 15px;
+  border-radius: 15px;
+}
+
+.guildAppCont textarea {
+  display: flex;
+  width: 80%;
+  margin: 15px;
+}
+
+.guildAppSubmitBtn {
+  width: 20%;
+  padding: 15px;
+  font-size: var(--largeFont);
+  margin: auto;
+  margin-top: 5%;
+  border-radius: 25px;
+  box-shadow: 0 0 50px black, inset 0 0 50px black;
+  background-color: #444;
+  color: white;
+  text-shadow: 0 0 5px black,  0 0 5px black,  0 0 5px black,  0 0 35px black;
+  border: 2px solid #ffb700;
+  order: 3;
+  display: block;
+  margin: 0 100% 0 100%;
+  padding: 5px 25px 5px 25px;
+}
+.guildAppSubmitBtn:hover {
+  transform: scale(.98);
+  transition: .15s ease;
+  box-shadow: 0 0 50px black, inset 0 0 50px black, 0 0 15px #ffb700;
+}
+
+input[type="checkbox"] {
+  transform: scale(150%);
+}
+
+
+@keyframes homeSlideL {
+  0% {
+    transform: translateX(-100vw);
+  }
+  65% {
+    transform: translateX(3vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes homeSlideR {
+  0% {
+    transform: translateX(200vw);
+  }
+  65% {
+    transform: translateX(-3vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes homeSlideB {
+  0% {
+    transform: translateY(200vw);
+  }
+  65% {
+    transform: translateY(-3vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+  
+}
+
+.mobileHomeAboutMirandus {
+  display: none;
+}
+.credMobile {
+  display: none;
+}
+.cred {
+  font-size: calc(var(--mediumFont) - .25rem);
+  font-family: 'Iowan';
+  color: white;
+  display: flex;
+  width: 25%;
+  text-align: center;
+  margin: 0 10% 0 70%;
+}
+
+@media screen and (max-width: 1500px) {
+  .vox {
+    transform: scale(.75);
+    bottom: 0%
+  }
+  .chatBubble {
+    scale: 75%;
+  }
+  .chatBubbleText {
+    bottom: 11%;
+    scale: 75%;
+  }
+  .guildCard-container {
+    top: 0px;
+    right: 0px;
+  }
+  .guildCardCont {
+    order: 2;
+    margin: 10% 0%;
+
+  }
+  .guildAppCont input,
+  .guildAppCont textarea {
+    margin: auto;
+  }
+  .guildAppCont textarea {
+    width: 100%;
+  }
+  input[type="checkbox"] {
+    width:8%;
+  }
+  label:nth-child(1) {
+    margin-top: 7%;
+  }
+  .guildAppSubmitBtn {
+    width: 60%;
+    padding: 3% 6%;
+    margin-top: 10%;
+  }
+  .guildAppCont {
+    width: 96vw;
+  }
+  .guildCard-container {
+    max-width: 80vw;
+    margin: auto;
+  }
+  .guildCard {
+    margin: auto;
+    margin: 10% 0 15% 0;
+  }
+  .guildForm {
+    order: 2;
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .mobileHomeAboutMirandus {
+    display: flex;
+    color: #cde;
+    width: 80%;
+    margin: auto;
+    border: 4px solid #cde;
+    font-family: 'Iowan';
+    padding: 6% 2%;
+    order: 2;
+    margin: 6% 0;
+    text-align: center;
+    box-shadow: 0  0 15px 10px #7a76ec;
+    font-size: var(--smallFont);
+  }
+  .leftBoxOn, .rightBoxOn, .homeDescriptionBOn {
+    display: none;
+  }
+  #menu-background-image,
+  #menu-background-imageExplore {
+    background: url("./pics/Mirandus_Encounter_2.jpg");
+    background-position: center -8%;
+    background-size: cover;
+    background-repeat: none;
+  }
+  #menu-background-imageExplore {
+    background: url('../mirandushub/pics/citadelOfTheSunBright.jpg');
+    background-size: cover;
+  }
+  #menu-items:hover ~ #menu-background-image {
+    background-size: cover;
+    opacity: 0.1;
+  }
+  .r-raceSelector,
+  .r-deedSelector,
+  .r-buildingSelector,
+  .r-monsterSelector {
+    justify-content: flex-start;
+    padding-left: 2.5vw;
+    padding-right: 2.5vw;
+  }
+  .r-raceSelector > div,
+  .r-deedSelector > div,
+  .r-buildingSelector > div,
+  .r-monsterSelector > div {
+    margin: 2% 2.5vw;
+  }
+  .r-scrollBtnTL, .r-scrollBtnTR {
+    display: none;
+  }
+
+  .r-bubbleCont {
+    height: 25vh;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  .r-topNavBubbles, .r-bubbleBtn {
+    transform: scale(.5);
+  }
+  .r-bubbleBtn {
+    margin: 2% 5vw;
+  }
+  .r-contForVid {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5%;
+  }
+  .r-charInfoCont {
+    width: 80%;
+    padding: 5%;
+  }
+  .r-charName {
+    margin: 0 auto;
+    margin-top: 5%;
+  }
+
+}
+
+@media screen and (max-width: 1200px) {
+
+  .homeVidAboutMirandus {
+    display: none;
+  }
+  .r-deedPic {
+    width:70%;
+    margin: 5%;
+    margin-bottom: 10%;
+  }
+  .r-buildingOuterCont {
+    width: 80%;
+  }
+  .r-buildingInfo div {
+    margin: 2%;
+    border: 0px;
+  }
+  .r-deedDescription {
+    padding: 0px;
+    width: 90%;
+  }
+  .r-deedNameBanner {
+    padding: 8% 2%;
+    margin: 5% 0%;
+  }
+  .r-deedName::before {
+    display: none;
+  }
+  .r-deedStats {
+    padding: 10% 6%;
+
+  }
+  .r-deedStats ul {
+    margin: 4% 0%;
+  }
+  .back-to-top {
+    display: none;
+  }
+  .carouselCont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+  .carousel-img {
+    width: 80%;
+  }
+  .r-scrollBtnL,
+  .r-scrollBtnR {
+    display: none;
+  }
+  .bubbleDisplayerOff,
+  .bubbleDisplayerOn,
+  .bubbleDisplayer {
+    font-size: var(--largeFont);
+  }
+  .menu-item {
+    font-size: calc(var(--veryLargeFont) + .85rem);
+    margin: 2vh 0;
+  }
+  #menu {
+    padding-top: 8vh;
+  }
+  .navbar-logo {
+    font-size: calc(var(--largeFontSize) - .5rem);
+  }
+  .r-charName {
+    margin-top: 10vh;
+  }
+  .r-charVid {
+    display: none;
+  }
+  .r-charImg {
+    display: flex;
+    height: 70vw;
+    width: auto;
+  }
+  .r-charInfoCont {
+    border-radius: 15px;
+    padding: 3%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .r-abilName {
+    width: 80%;
+    font-size: var(--largeFont);
+  }
+  .r-abilName span {
+    font-size: var(--largeFont);
+  }
+  .r-abilImg {
+    width: 30%;
+  }
+  .r-abilDesc {
+    width: 80%;
+  }
+  .monstersBG {
+    background-size: 1000%;
+  }
+  .r-contForPic {
+    width: 100%;
+  }
+  .r-monsterPic {
+    width: 80%;
+    margin-bottom: 10%;
+  }
+  .r-monstersOuterCont {
+    width: 80%;
+  }
+  .r-monstersInfoCont {
+    padding: 8% 5%;
+  }
+  .r-monstersName {
+    margin: 10% 0;
+    font-size: var(--veryLargeFont)
+  }
+  .rightBoxOff {
+    display: none;
+  }
+
+  #menu-items:hover > .menu-item {
+    opacity: 1;
+  }
+  *{
+    border-radius: 15px;
+  }
+  .r-deedOuterCont,
+  .r-monstersOuterCont,
+  .r-buildingOuterCont,
+  .r-outerCont {
+    border: none;
+    box-shadow: none;
+    padding: 8% 0%;
+    width: 100%;
+    margin: 0%;
+
+  }
+  .r-deedInfoCont,
+  .r-buildingInfoCont,
+  .r-infoCont {
+    border: 0px solid #7a76ec70;
+    box-shadow: 0 0 12px 5px #7a76ec70;
+    padding: 8% 0% 0% 0%;
+    height: fit-content;
+
+  }
+  .r-deedInnerCont {
+    box-shadow: none;
+    width: 95%;
+    display: flex;
+    justify-content: center;
+  }
+  .r-buildingInfoCont::before,
+  .r-buildingInfoCont::after,
+  .r-deedInfoCont::before,
+  .r-deedInfoCont::after,
+  .r-monstersInfoCont::before,
+  .r-monstersInfoCont::after,
+  .r-infoCont::before,
+  .r-infoCont::after {
+    display: none;
+  }
+  .r-deedPic {
+    box-shadow: 0 0 12px 5px #7a76ec70;
+    border: none;
+  }
+  .r-monsterPic {
+    box-shadow: 0 0 12px 5px #b43131;
+    border: 0px;
+  }
+  .r-charName {
+    font-size: var(--veryLargeFont);
+  }
+  .r-monstersInfoCont {
+    box-shadow: 0 0 12px 5px #b43131;
+    border: 0px;
+  }
+  .r-buildingDescription {
+    border-radius: 0px;
+    border-bottom: 2px solid #7a76ec70;
+    padding-bottom: 8%;
+  }
+  .r-buildingInfo {
+    display: flex;
+    align-items: bottom;
+    padding: 2%;
+  }
+  .r-deedNameBanner {
+    border: 2px solid #333;
+  }
+  .carousel-img {
+    border: 2px solid #333;
+  }
+  .carouselCont {
+    padding-bottom: 8%;
+  }
+  #menu-background-image {
+    background-position: 75%;
+  }
+  .menu-background-imageExplore {
+    height: calc(100vh - 80px);
+  }
+  .menu-background-patternExplore {
+    height: calc(100vh - 80px);
+  }
+  .r-deedStats > span {
+    font-size: var(--veryLargeFont);
+  }
+  .cred {
+    display: none;
+  }
+  .credMobile {
+    color: white;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: calc(var(--mediumFont) - .25rem);
+    font-family: 'Iowan';
+    padding: 0 10%;
+  }
+  .tavernTalesContainer {
+    border-radius: 15px;
+  }
+  .r-exemplarBackground {
+    width: 100vw;
+  }
+  .r-deedsBG,
+  .r-buildingsBG,
+  .r-deedSelectorContainer, .r-deedSelector,
+  .r-buildingSelectorContainer, .r-buildingSelector  {
+    border-radius: 0;
+  }
+  .nav-menu {
+    border-radius: 0;
+  }
+
+}
+@media (max-width: 330px) {
+  .guildCard {
+    display: none;
+  }
+}
+.underDevelopment {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: var(--veryLargeFont);
+  color: white;
+  align-items: center;
+  font-family: 'Iowan';
+  text-transform: uppercase;
+  height: 80vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.underDevelopment > span {
+  font-size: var(--mediumFont);
+  font-family: 'Iowan';
+}
+
+.monstersBG {
+  background: url('../mirandushub/pics/goblinAlter.jfif');
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+  opacity: .4;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.volume {
+  background-color: transparent;
+  border-radius: 25px;
+  color: white;
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+  font-size: calc(.5rem + var(--largeFont));
+  border: 2px solid #ecbc62;
+  box-shadow: 0 2px 14px 1px #790cbd, inset 0 0 14px 8px #000;
+  margin-left: 1rem;
+}
+
+.footer {
+  background: linear-gradient(#000 5%, #222 10%, #111 55%, #000 70%);
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(var(--smallFont) + .15rem);
+  width: 40vw;
+  position: fixed;
+  bottom: 1.5%;
+  border-radius: 15px;
+  right: 30vw;
+  border: 2px solid black;
+  z-index: -1;
+}
+

@@ -1,0 +1,42 @@
+li {
+    position: relative;
+}
+
+.dropdown-menu {
+    width: 200px;
+    position: absolute;
+    top: 70px;
+    list-style: none;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    background-color: #cde;
+}
+
+.dropdown-menu li {
+    background: #111;
+    cursor: pointer;
+    width: 200px;
+}
+
+.dropdown-menu li:hover {
+    filter: brightness(200%);
+}
+
+.dropdown-menu.clicked {
+    display: none;
+}
+
+.dropdown-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #fff;
+    padding: 16px;
+    transition: all .25s ease;
+    font-size: calc(var(--smallFont) + .1rem);
+    font-family: 'Iowan';
+
+}
+
