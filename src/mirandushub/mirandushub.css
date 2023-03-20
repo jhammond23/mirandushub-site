@@ -90,11 +90,14 @@ a:hover {
 }
 
 #menu {
-  padding-top: 20vh;
-  align-items:flex-start;
+  position: fixed; /* This will position the element relative to the browser window */
+  top: 0; /* Set the top edge to be at the top of the screen */
+  right: 0; /* Set the right edge to be at the right of the screen */
+  bottom: 0; /* Set the bottom edge to be at the bottom of the screen */
+  left: 0; /* Set the left edge to be at the left of the screen */
   display: flex;
-  height: 90vh;
-  width: 100vw;
+  align-items: flex-start;
+  padding-top: 20vh;
 }
 
 #menu-items {
@@ -103,23 +106,23 @@ a:hover {
   z-index: 2;
 }
 
-#menu[data-active-index="0"] > #menu-background-pattern {
+#menu[data-active-index="0"] > .menu-background-pattern {
   background-position: 0% -20%;
 }
 
-#menu[data-active-index="1"] > #menu-background-pattern {
+#menu[data-active-index="1"] > .menu-background-pattern {
   background-position: 0% -42%;
 }
 
-#menu[data-active-index="2"] > #menu-background-pattern {
+#menu[data-active-index="2"] > .menu-background-pattern {
   background-position: 0% -60%;
 }
 
-#menu[data-active-index="3"] > #menu-background-pattern {
+#menu[data-active-index="3"] > .menu-background-pattern {
   background-position: 0% -80%;
 }
 
-#menu[data-active-index="4"] > #menu-background-pattern {
+#menu[data-active-index="4"] > .menu-background-pattern {
   background-position: 0% -100%;
 }
 
@@ -131,25 +134,25 @@ a:hover {
 #menu[data-active-index="1"] > #menu-background-image,
 #menu[data-active-index="1"] > #menu-background-imageAssets
 {
-  background-position: center 20%;
+  background-position: center 25%;
 }
 
 #menu[data-active-index="2"] > #menu-background-image, 
 #menu[data-active-index="2"] > #menu-background-imageAssets
 {
-  background-position: center 40%;
+  background-position: center 50%;
 }
 
 #menu[data-active-index="3"] > #menu-background-image,
 #menu[data-active-index="3"] > #menu-background-imageAssets
 {
-  background-position: center 60%;
+  background-position: center 75%;
 }
 
 #menu[data-active-index="4"] > #menu-background-image,
 #menu[data-active-index="4"] > #menu-background-imageAssets
 {
-  background-position: center 80%;
+  background-position: center 100%;
 }
 
 .one {
@@ -182,13 +185,12 @@ a:hover {
   }
 }
 
-#menu-background-pattern,
-#menu-background-patternAssets {
+.menu-background-pattern {
   background-image: linear-gradient(#3774b117 .1em, transparent .1em), linear-gradient(90deg, #3774b117 .1em, transparent .1em);
   background-size: 3em 3em;
   background-position: 0% 0%;
   background-size: 12vmin 12vmin;
-  height: 100vh;
+  height: 100%;
   left: 0px;
   position: fixed;
   top: 0px;
@@ -207,7 +209,7 @@ a:hover {
 #menu-background-imageAssets {
   background: url("./pics/Mirandus_Encounter_2.jpg");
   background-position: center 0%;
-  background-size: 115vmax;
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
   left: 0px;  
@@ -221,13 +223,23 @@ a:hover {
   z-index: -1;
 }
 
-#menu-items:hover ~ #menu-background-pattern {
+/* Assets */
+
+#menu-background-imageAssets {
+  background-image: url('../mirandushub/pics/stable.png');
+}
+
+.fullScreen {
+  max-height: 110vh;
+}
+
+#menu-items:hover ~ .menu-background-pattern {
   background-size: 11vmin 11vmin;
   opacity: 0.5;
 }
 
-#menu-items:hover ~ #menu-background-image {
-  background-size: 120vmax;
+#menu-items:hover ~ #menu-background-image,
+#menu-items:hover ~ #menu-background-imageAssets {
   opacity: 0.1;
 }
 
@@ -282,7 +294,7 @@ a:hover {
 .orb3,
 .orb4,
 .orb5 {
-  position: relative;
+  position: fixed;
   background: #3632cb;
   border-radius: 50%;
   z-index: 5;
@@ -572,6 +584,39 @@ a:hover {
   100% {
     left: clamp(-1.5rem, -4vw, -6rem);   
   }
+}
+
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.menu-item {
+  animation: float 2s ease-in-out infinite;
+}
+
+.menu-item.one {
+  animation-delay: 0s;
+}
+
+.menu-item.two {
+  animation-delay: 0.2s;
+}
+
+.menu-item.three {
+  animation-delay: 0.4s;
+}
+
+.menu-item.four {
+  animation-delay: 0.6s;
 }
 
 /*nav bar*/
@@ -2439,20 +2484,6 @@ figure > div {
   text-shadow: 0 0 8px #790cbd;
 }
 
-/* Assets */
-
-#menu-background-imageAssets {
-  background-image: url('../mirandushub/pics/stable.png');
-  height: 130vh;
-  background-size: 150%;
-}
-#menu-background-patternAssets {
-  max-height: 130vh;
-}
-.fullScreen {
-  max-height: 110vh;
-}
-
 .homeVidAboutMirandus {
   order: 2;
   margin: auto;
@@ -2909,6 +2940,13 @@ input[type="checkbox"] {
   margin: 0 10% 0 70%;
 }
 
+@media screen and (max-width: 2100px) {
+  #menu-background-image,
+  #menubackground-imageAssets {
+    background-size: cover;
+  }
+}
+
 @media screen and (max-width: 1500px) {
   .vox {
     transform: scale(.75);
@@ -2964,6 +3002,13 @@ input[type="checkbox"] {
     order: 2;
     width: fit-content;
   }
+  #menu-background-image,
+  #menu-background-imageAssets {
+    background-size: cover;
+  }
+  .menu-item:hover::after {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 1200px) {
@@ -2995,8 +3040,8 @@ input[type="checkbox"] {
     background: url('../mirandushub/pics/citadelOfTheSunBright.jpg');
     background-size: cover;
   }
-  #menu-items:hover ~ #menu-background-image {
-    background-size: cover;
+  #menu-items:hover ~ #menu-background-image,
+  #menu-items:hover ~ #menu-background-imageAssets {
     opacity: 0.1;
   }
   .r-raceSelector,
@@ -3169,9 +3214,7 @@ input[type="checkbox"] {
     display: none;
   }
 
-  #menu-items:hover > .menu-item {
-    opacity: 1;
-  }
+
   *{
     border-radius: 15px;
   }
@@ -3245,14 +3288,9 @@ input[type="checkbox"] {
   .carouselCont {
     padding-bottom: 8%;
   }
-  #menu-background-image {
+  #menu-background-image,
+  #menu-background-imageAssets {
     background-position: 75%;
-  }
-  .menu-background-imageAssets {
-    height: calc(100vh - 80px);
-  }
-  .menu-background-patternAssets {
-    height: calc(100vh - 80px);
   }
   .r-deedStats > span {
     font-size: var(--veryLargeFont);
@@ -3288,7 +3326,9 @@ input[type="checkbox"] {
   .youtube:hover::after {
     display: none;
   }
-
+  .menu-item:hover::after {
+    display: none;
+  }
 }
 @media (max-width: 330px) {
   .guildCard {

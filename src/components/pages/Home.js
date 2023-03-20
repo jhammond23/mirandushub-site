@@ -35,7 +35,7 @@ export default function Home () {
                     <Link class="menu-item three" to="/monsters" onMouseEnter={() => setIndex(4)}>MONSTERS</Link>
                     <Link to="/about" class='menu-item four' onMouseEnter={() => setIndex(1)}>ABOUT</Link>
                 </div>
-                <div id="menu-background-pattern"></div>
+                <div className="menu-background-pattern"></div>
                 <div id="menu-background-image"></div>
             </div>
             <div className="orb"></div>
