@@ -3,7 +3,7 @@ import { MenuItems } from './MenuItems';
 import './Dropdown.css';
 import { Link } from 'react-router-dom';
 
-function Dropdown() {
+function Dropdown({ handleNavLinkHover, handleNavLinkMouseLeave }) {
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);

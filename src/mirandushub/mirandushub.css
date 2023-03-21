@@ -3399,3 +3399,8 @@ input[type="checkbox"] {
   z-index: -1;
 }
 
+.rotated-letter {
+  display: inline-block;
+  transform-origin: center;
+  transition: transform 0.3s;
+}

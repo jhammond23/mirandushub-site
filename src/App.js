@@ -56,7 +56,7 @@ function App() {
   useEffect(() => {
     if (hasMounted) {
       if (location.pathname === '/') {
-        toast.info(`03/06/2023 UPDATE: Added a page for guild recruitment!`, {
+        toast.info(`03/20/2023 UPDATE: Added a page for guild recruitment!`, {
           position: toast.POSITION.BOTTOM_RIGHT,
           style : {
             backgroundColor: '#333',

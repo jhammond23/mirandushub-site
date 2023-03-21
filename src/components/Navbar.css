@@ -2,37 +2,40 @@
   background: linear-gradient(#000 5%, #222 10%, #111 55%, #000 70%);
   height: 80px;
   display: flex;
-  justify-content: center;
   align-items: center;
   font-size: calc(var(--smallFont) + .15rem);
   width: 100vw;
   position: fixed;
   top: 0px;
+  justify-content: space-between;
 }
-.navbar-logo:hover {
-  text-decoration: none;
-  color: #ecbc62;
-  transform: scale(1.02);
-}
+
+
 .navbar-logo {
-  color: #fff;
   justify-self: center;
-  margin-left: 20px;
+  margin-left: 40px;
   cursor: pointer;
   text-decoration: none;
   font-size: calc(var(--largeFont) + .5rem);
   color: #ecbc62;
   height: 100%;
-  transition: all ease .5s;
   font-family: 'PenumbraSerifStd-Semibold';
-
+  transform-origin: center;
+  position: relative;
+  display: inline-block;
+}
+.navbar-logo:hover {
+  text-decoration: none;
+  color: #ecbc62;
+  text-shadow: 0 2px 8px #790cbd;
+  letter-spacing: .25px;
 }
 
 .logoContainer {
   width: fit-content;
   height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: flex;
 }
 
 .fa-firstdraft {
@@ -44,25 +47,25 @@
   display: flex;
   list-style: none;
   text-align: center;
-  width: 70vw;
-  justify-content: end;
-  margin-right: 2rem;
+  justify-content: flex-end;
+  margin-right: 40px;
 }
 
 .nav-item {
   display: flex;
   align-items: center;
   height: 80px;
-  width: 150px;
+  width: 200px;
   justify-content: center;
+
 }
 
 #nav-links {
   color: #cde;
   text-decoration: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 15px;
   display: flex;
-  transition:0.5s ease;
+  transition: 0.5s ease;
   font-family: 'Cinzel';
   text-shadow: 0 0 10px #000, 0 0 13px black, 0 0 8px black, 0 0 1px black;
   font-weight: 600;
@@ -75,8 +78,12 @@
 #nav-links:hover {
   position: relative;
   transition: all 0.2s ease-out;
+  color: #ecbc62;
+  text-shadow: 0 2px 8px #790cbd;
+  letter-spacing: 1px;
 
 }
+
 #nav-links:hover::before {
   background: linear-gradient(#535d6b, #000 70%);
   background-color: #1c2026;
@@ -92,6 +99,13 @@
 
 }
 
+.rotated-letter {
+  transition: all 0.2s ease-out;
+  font-family: 'Cinzel';
+}
+.logoLetter {
+  font-family: 'PenumbraSerifStd-Regular';
+}
 @keyframes nav-item-bg-up {
   0% {
     opacity: 0;
@@ -129,6 +143,28 @@
   display: none;
 }
 
+  /*new*/
+  
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeInScaleUp {
+    0% {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
 @media screen and (max-width: 1200px) {
   .NavbarItems {
     position: relative;
@@ -145,6 +181,7 @@
     opacity: 1;
     transition: all 0.5s ease;
     padding: 1rem;
+    animation: slideInFromLeft 0.5s forwards;
 
   }
 
@@ -158,7 +195,8 @@
     justify-content: flex-start;
     align-items: center;
     padding-top: 50px;
-    
+    animation: slideInFromLeft 0.5s forwards;
+
   }
 
   #nav-links:hover::before {
@@ -246,18 +284,6 @@
     border-radius: 0px;
 
   }
-  /*
-  .nav-item:active::before {
-    display: contents;
-    content: '';
-    width: 50vw;
-    height: 10vh;
-    background-color: yellow;
-    top: 0;
-    left: o;
-    transform: translate(-25vw);
-    position: absolute;
-  }
-  */
+
   
 }

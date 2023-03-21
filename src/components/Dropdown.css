@@ -11,6 +11,8 @@ li {
     display: flex;
     flex-direction: column;
     background-color: #cde;
+    animation: fadeInScaleUp 0.3s forwards;
+
 }
 
 .dropdown-menu li {
