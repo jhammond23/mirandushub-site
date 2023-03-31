@@ -1,17 +1,35 @@
-import React from "react";
-import {useState, useEffect} from 'react';
+import React, { useState, useEffect, useRef } from "react";
 import '../../mirandushub/mirandushub.css'
-import { useRef } from "react";
 import { setProperty } from 'react';
 import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
-
+import sword from '../../mirandushub/pics/sword.png';
+import swordLogo from '../../mirandushub/pics/MHlogoSword.png';
 
 export default function Home () {
   const [index, setIndex] = useState(null);
   const [scroll, setScroll] = useState(false);
   
   const menu = document.getElementById("menu");
+  const welcomeToRef = useRef(null);
+  const MirandusHubRef = useRef(null);
+
+
+  useEffect(() => {
+    // Add the fade-in effect when the component mounts
+    if (welcomeToRef.current) {
+      welcomeToRef.current.classList.add("fade-in");
+    }
+  }, []);
+  useEffect(() => {
+    // Add the fade-in effect when the component mounts
+    if (MirandusHubRef.current) {
+      setTimeout(() => {
+        MirandusHubRef.current.classList.add("fade-in-long");
+      }, 2000); // 2-second delay
+    }
+  }, []);
+
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -19,32 +37,48 @@ export default function Home () {
     });
   }, []);
 
-      Array.from(document.getElementsByClassName("menu-item"))
-        .forEach((item, index) => {
-          item.onmouseover = () => {
-            menu.dataset.activeIndex = index;
-          }
-        });
+  Array.from(document.getElementsByClassName("menu-item"))
+    .forEach((item, index) => {
+      item.onmouseover = () => {
+        menu.dataset.activeIndex = index;
+      }
+    });
 
-    return (
-        <section className="home">
-            <div id="menu">
-                <div id="menu-items">
-                    <Link to="/assets" class='menu-item one' onMouseEnter={() => setIndex(2)}>ASSETS</Link>
-                    <Link to="/community" class="menu-item two" onMouseEnter={() => setIndex(3)}>COMMUNITY</Link>
-                    <Link class="menu-item three" to="/monsters" onMouseEnter={() => setIndex(4)}>MONSTERS</Link>
-                    <Link to="/about" class='menu-item four' onMouseEnter={() => setIndex(1)}>ABOUT</Link>
-                </div>
-                <div className="menu-background-pattern"></div>
-                <div id="menu-background-image"></div>
-            </div>
-            <div className="orb"></div>
-            <div className="orb2"></div>
-            <div className="orb3"></div>
-            <div className="orb4"></div>
-            <div className="orb5"></div>
-        </section>
-    )
+  return (
+      <section className="home">
+        <img src={swordLogo} alt='Mirandus Hub logo' className="tabletH1" />
+        <div className="blackBG">
+          <div className="homeMobileHeader">
+            <div ref={welcomeToRef} className="welcome-to">Welcome to...</div>
+            <h1 ref={MirandusHubRef} className="mirandus-hub">Mirandus Hub</h1>
+            <img className="sword" src={sword} />
+          </div>
+        </div>
+        <div id="menu">
+          <div id="menu-items">
+            <h2>
+              <Link to="/assets" class='menu-item one' onMouseEnter={() => setIndex(2)}>ASSETS</Link>
+            </h2>
+            <h2>
+              <Link to="/community" class="menu-item two" onMouseEnter={() => setIndex(3)}>COMMUNITY</Link>
+            </h2>
+            <h2>
+              <Link class="menu-item three" to="/monsters" onMouseEnter={() => setIndex(4)}>MONSTERS</Link>
+            </h2>
+            <h2>
+              <Link to="/about" class='menu-item four' onMouseEnter={() => setIndex(1)}>ABOUT</Link>
+            </h2>
+          </div>
+          <div className="menu-background-pattern"></div>
+          <div id="menu-background-image"></div>
+        </div>
+        <div className="orb"></div>
+        <div className="orb2"></div>
+        <div className="orb3"></div>
+        <div className="orb4"></div>
+        <div className="orb5"></div>
+      </section>
+  )
 }
 
 /*

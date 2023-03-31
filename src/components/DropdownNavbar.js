@@ -222,7 +222,6 @@ function Navbar() {
                 {letter}
               </span>
             ))}
-            <i className='fas fa-caret-down' />
             </Link>
             {dropdown2 && (
               <Dropdown2

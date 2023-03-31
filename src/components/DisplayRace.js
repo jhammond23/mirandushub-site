@@ -21,7 +21,10 @@ const DisplayRace = () => {
 
     return (
         <div className='r-exemplarBackground'>
-            <header className='r-raceSelectorTitle'>XEMPLAR</header>
+
+            <br />
+
+            <h2 className='r-raceSelectorTitle'>xemplar</h2>
 
 
             <br />

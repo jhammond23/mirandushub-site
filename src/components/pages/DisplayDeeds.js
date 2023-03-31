@@ -19,6 +19,8 @@ const DisplayDeeds = () => {
     return (
         <div className='r-background'>
             <div className='r-deedsBG'>
+            <br />
+
                 <header className='r-deedSelectorTitle'>EED</header>
 
 

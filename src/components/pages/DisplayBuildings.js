@@ -46,6 +46,9 @@ const DisplayBuildings = () => {
     return (
         <div className='r-background'>
             <div className='r-buildingsBG'>
+
+            <br />
+
                 <header className='r-buildingSelectorTitle'>UILDING</header>
 
 

@@ -214,7 +214,7 @@ a:hover {
   height: 100%;
   left: 0px;  
   opacity: 0.25;
-  position: absolute;
+  position: fixed;
   top: 0px;
   transition: opacity 800ms ease,
     background-size 800ms ease,
@@ -1105,18 +1105,21 @@ nav{
 .r-deedsBG,
 .r-monstersBG,
 .r-buildingsBG {
-  background-image: url('../mirandushub/pics/lightorangeBlueCitadel.jpg');
   background-position: 0% 20%;
   background-repeat: no-repeat;
   background-size: cover;
 }
 .r-buildingsBG {
-  background-image: url('../mirandushub/pics/greyBGCitadel.jpg');
-  background-position: 0% 50%;
+  background-image: url('../mirandushub/pics/tavern.jpg');
+  background-position: 0% 00%;
 }
 .r-monstersBG {
   background-image: url('../mirandushub/pics/goblinAlter.jfif');
-  background-position: 0% 90%;
+  background-position: 0% 0%;
+}
+.r-deedsBG {
+  background-image: url('../mirandushub/pics/stable.png');
+  background-position: 0% 0%;
 }
 
 .bubbleDisplayerOn,
@@ -1129,10 +1132,11 @@ nav{
   bottom: 3vh;
   right: 3vw;
   cursor: pointer;
-  color:#ecbc62;
+  color: #ecbc62;
   text-shadow: #790cbd 0px 2px 5px;
   font-weight: 600;
-  font-size: calc(var(--mediumFont) - .5rem);
+  line-height: 1.1; /* Add this line */
+  white-space: nowrap; /* Add this line */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1145,6 +1149,7 @@ nav{
   font-family: 'PenumbraSerifStd-Bold';
   text-shadow: 0 0 8px #790cbd;
 }
+
 .bubbleDisplayerOn {
   animation: slide-up 2s, hover ease 4s infinite, mtrm ease infinite 3s;
   bottom: 27vh;
@@ -1833,7 +1838,7 @@ nav{
 .r-aboutTitles {
   font-weight: 600;
   text-align: center;
-  padding: 3%;
+  padding: 2%;
   margin: 0 auto;
   color: #ecbc62;
   font-size: var(--veryLargeFont);
@@ -1842,13 +1847,12 @@ nav{
   width: fit-content;
   display: flex;
   font-family: 'PenumbraSerifStd-Bold';
-  text-shadow: 0 0 8px #790cbd, 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 100px black, 0 0 150px black;
-
+  text-shadow: 0 0 8px #000,  0 0 8px #790cbd,  0 0 8px #790cbd,  0 0 8px #790cbd,  0 0 8px #790cbd;
 }
 
 .r-monsterSelectorTitle {
   color: #b43131;
-  text-shadow: 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 50px black, 0 0 100px black, 0 0 150px black;
+  text-shadow: 0 0 8px black, 0 0 8px black, 0 0 8px black, 0 0 8px black, 0 0 8px black, 0 0 8px black;
 }
 .r-raceSelectorTitle::before {
   content: 'E';
@@ -2753,23 +2757,29 @@ _::-webkit-full-page-media, _:future, :root .guildCard::before {
   animation: chatbubble-appear 0.25s forwards;
 }
 
-.chatBubbleText {
+.chatBubbleContainer {
+  position: fixed;
+  right: 151px;
+  bottom: 70px;
   width: 230px;
-  height: auto;
+  height: 130px; /* Adjust the height to match the chat bubble height */
   display: flex;
   justify-content: center;
-  text-align: center;
-  z-index: 1001;
-  position: fixed;
-  color: black;
-  right: 160px;
-  bottom: 100px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  align-items: center;
   transform: rotate(-5deg) scale(5%);
   transform-origin: bottom right;
   animation: chatbubble-appear 0.25s forwards;
+  z-index: 1001;
 }
+
+.chatBubbleText {
+  text-align: center;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 700;
+
+}
+
 
 @keyframes chatbubble-appear {
   0% {
@@ -2940,6 +2950,74 @@ input[type="checkbox"] {
   margin: 0 10% 0 70%;
 }
 
+
+
+.chevron-container {
+  position: relative;
+  bottom: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+ }
+
+.chevron {
+  position: absolute;
+  width: calc(.6rem  * 3.5);
+  height: calc(.6rem * 0.8);
+  opacity: 0;
+  transform: scale(0.8);
+  animation: move-chevron 3s ease-out infinite;
+}
+
+.chevron:first-child {
+  animation: move-chevron 3s ease-out 1s infinite;
+}
+
+.chevron:nth-child(2) {
+  animation: move-chevron 3s ease-out 2s infinite;
+}
+
+.chevron:before,
+.chevron:after {
+ content: '';
+ position: absolute;
+ top: 0;
+ height: 100%;
+ width: 50%;
+ background: #7a76ec;
+}
+
+.chevron:before {
+ left: 0;
+ transform: skewY(30deg);
+}
+
+.chevron:after {
+ right: 0;
+ width: 50%;
+ transform: skewY(-30deg);
+}
+
+@keyframes move-chevron {
+ 25% {
+  opacity: 1;
+	}
+ 33.3% {
+  opacity: 1;
+  transform: translateY(calc(.6rem * 3.8));
+ }
+ 66.6% {
+  opacity: 1;
+  transform: translateY(calc(.6rem * 5.2));
+ }
+ 100% {
+  opacity: 0;
+  transform: translateY(calc(.6rem * 8)) scale(0.5);
+ }
+}
+
 @media screen and (max-width: 2100px) {
   #menu-background-image,
   #menubackground-imageAssets {
@@ -2948,18 +3026,14 @@ input[type="checkbox"] {
 }
 
 @media screen and (max-width: 1500px) {
+  #menu-items:hover > .menu-item {
+    opacity: 1;
+}
   .vox {
     transform: scale(.75);
     bottom: 0%
   }
-  .chatBubble {
-    scale: 75%;
-  }
-  .chatBubbleText {
-    right: 151px;
-    bottom: 9%;
-    scale: 75%;
-  }
+
   .guildCard-container {
     top: 0px;
     right: 0px;
@@ -3004,7 +3078,10 @@ input[type="checkbox"] {
   }
   #menu-background-image,
   #menu-background-imageAssets {
-    background-size: cover;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
   }
   .menu-item:hover::after {
     display: none;
@@ -3029,16 +3106,9 @@ input[type="checkbox"] {
   .leftBoxOn, .rightBoxOn, .homeDescriptionBOn {
     display: none;
   }
-  #menu-background-image,
-  #menu-background-imageAssets {
-    background: url("./pics/Mirandus_Encounter_2.jpg");
-    background-position: center -8%;
-    background-size: cover;
-    background-repeat: none;
-  }
+
   #menu-background-imageAssets {
     background: url('../mirandushub/pics/citadelOfTheSunBright.jpg');
-    background-size: cover;
   }
   #menu-items:hover ~ #menu-background-image,
   #menu-items:hover ~ #menu-background-imageAssets {
@@ -3092,6 +3162,10 @@ input[type="checkbox"] {
 
 @media screen and (max-width: 1200px) {
 
+  .chevron {
+    display: none;
+  }
+
   .homeVidAboutMirandus {
     display: none;
   }
@@ -3142,12 +3216,7 @@ input[type="checkbox"] {
   .r-scrollBtnR {
     display: none;
   }
-  .bubbleDisplayerOff,
-  .bubbleDisplayerOn,
-  .bubbleDisplayer {
-    font-size: var(--largeFont);
-    
-  }
+
   .menu-item {
     font-size: calc(var(--veryLargeFont) + .85rem);
     margin: 2vh 0;
@@ -3214,10 +3283,6 @@ input[type="checkbox"] {
     display: none;
   }
 
-
-  *{
-    border-radius: 15px;
-  }
   .r-deedOuterCont,
   .r-monstersOuterCont,
   .r-buildingOuterCont,
@@ -3292,6 +3357,7 @@ input[type="checkbox"] {
   #menu-background-imageAssets {
     background-position: 75%;
   }
+
   .r-deedStats > span {
     font-size: var(--veryLargeFont);
   }
@@ -3330,6 +3396,12 @@ input[type="checkbox"] {
     display: none;
   }
 }
+@media (max-width: 600px) {
+  .chevron {
+    display: block;
+  }
+}
+
 @media (max-width: 330px) {
   .guildCard {
     display: none;

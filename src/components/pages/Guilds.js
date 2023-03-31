@@ -54,7 +54,9 @@ const Guilds = () => {
                 {showChatBubble && (
                     <a href='/guild-application'>
                         <img src={chatBubble} onMouseEnter={handleChatBubbleMouseEnter} onMouseLeave={handleChatBubbleMouseLeave} alt='Chat bubble' className='chatBubble'></img>
-                        <div  className='chatBubbleText'>Want your guild featured? Click me to fill out the application!</div>
+                        <div className='chatBubbleContainer'>
+                            <div className='chatBubbleText'>Want your guild featured? Click me to fill out the application!</div>
+                        </div>
                     </a>
                 )}
             </div>

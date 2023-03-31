@@ -21,6 +21,8 @@ const Displaymonsters = () => {
     return (
         <div className='r-background'>
             <div className='r-monstersBG'>
+            <br />
+
                 <header className='r-monsterSelectorTitle'>ONSTER</header>
 
 
