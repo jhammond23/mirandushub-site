@@ -8,19 +8,19 @@ import swordLogo from '../../mirandushub/pics/MHlogoSword.png';
 
 export default function Home () {
   const [index, setIndex] = useState(null);
-  const [scroll, setScroll] = useState(false);
-  
+  const [scroll, setScroll] = useState(false);  
   const menu = document.getElementById("menu");
   const welcomeToRef = useRef(null);
   const MirandusHubRef = useRef(null);
-
-
+  
+  
   useEffect(() => {
     // Add the fade-in effect when the component mounts
     if (welcomeToRef.current) {
       welcomeToRef.current.classList.add("fade-in");
     }
   }, []);
+  
   useEffect(() => {
     // Add the fade-in effect when the component mounts
     if (MirandusHubRef.current) {
@@ -29,21 +29,20 @@ export default function Home () {
       }, 2000); // 2-second delay
     }
   }, []);
-
-
+  
   useEffect(() => {
     window.addEventListener("scroll", () => {
       setScroll(window.scrollY > 400);
     });
   }, []);
-
+  
   Array.from(document.getElementsByClassName("menu-item"))
     .forEach((item, index) => {
       item.onmouseover = () => {
         menu.dataset.activeIndex = index;
       }
     });
-
+  
   return (
       <section className="home">
         <img src={swordLogo} alt='Mirandus Hub logo' className="tabletH1" />
@@ -71,13 +70,14 @@ export default function Home () {
           </div>
           <div className="menu-background-pattern"></div>
           <div id="menu-background-image"></div>
-        </div>
-        <div className="orb"></div>
-        <div className="orb2"></div>
-        <div className="orb3"></div>
-        <div className="orb4"></div>
-        <div className="orb5"></div>
-      </section>
+    </div>
+    <div className="orb"></div>
+    <div className="orb2"></div>
+    <div className="orb3"></div>
+    <div className="orb4"></div>
+    <div className="orb5"></div>
+  </section>
+
   )
 }
 

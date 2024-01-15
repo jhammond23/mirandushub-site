@@ -1,0 +1,29 @@
+.materium-container {
+    position: fixed;
+    bottom: 0;
+    left: 10%;
+    height: 20vh;
+    width: 80vw;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.materium-core {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, black 0%, black 80%, yellow 80%, yellow 90%, purple 90%);
+    animation: spin 5s infinite linear;
+}
+
+@keyframes spin {
+    from {
+        transform: rotateY(0deg);
+    }
+    to {
+        transform: rotateY(1turn);
+    }
+}

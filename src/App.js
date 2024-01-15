@@ -24,6 +24,12 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import GuildApp from './components/pages/GuildApp';
 import Assets from './components/pages/Assets';
+import ActionSequence from './components/ActionSequence';
+import NewHome from './components/pages/NewHome';
+import Scene from './components/pages/NewHome';
+import InteractiveDeedPage from './components/InteractiveDeedPage';
+
+
 
 function App() {
 
@@ -56,7 +62,7 @@ function App() {
   useEffect(() => {
     if (hasMounted) {
       if (location.pathname === '/') {
-        toast.info(`03/21/2023 UPDATE: Added a page for guild recruitment!`, {
+        toast.info(`New deed builder live! Visit /deeds & hit 'Place Buildings on Deed'!`, {
           position: toast.POSITION.BOTTOM_RIGHT,
           style : {
             backgroundColor: '#333',
@@ -64,7 +70,7 @@ function App() {
             borderRadius: '4px',
           },
           onClick: () => {
-            navigate('/guilds');
+            navigate('/deeds/Farming%20Hamlet/interactive');
           }
         });
       } else if (location.pathname === '/exemplars') {
@@ -82,7 +88,8 @@ function App() {
   }, [location.pathname, navigate, hasMounted]);
 
   return (
-    <div id='parent'>
+    <>
+      <div id='parent'>
       <ToastContainer />
       <DropdownNavbar />
       <div className='down80'>
@@ -99,6 +106,9 @@ function App() {
           <Route path='/guilds' element={<Guilds /> } />
           <Route path='/creators' element={<Creators /> } />
           <Route path='/guild-application' element={<GuildApp /> } />
+          <Route path='/action-sequence' element={<ActionSequence /> } />
+          <Route path='/new-home' element={<Scene /> } />
+          <Route path="/deeds/:deedName/interactive" element={<InteractiveDeedPage />} />
         </Routes>
       </div>
       {showButton && (
@@ -107,6 +117,8 @@ function App() {
         </button>
       )}
     </div>
+    </>
+
   );
 }
 

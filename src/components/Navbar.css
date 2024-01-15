@@ -26,13 +26,54 @@
   transition: transform 0.3s ease;
 
 }
+
+.navbar-logo::after {
+  content: '';
+  width: 100%;
+  height: 300px;
+  background-image: url('/src/mirandushub/pics/sword.png');
+  position: absolute;
+  z-index: -1;
+  background-position: center;
+  background-size: contain;
+  transform: rotate(240deg);
+  left: -500px;
+  top: -150px;
+
+}
 .navbar-logo:hover {
   text-decoration: none;
   color: #ecbc62;
-  text-shadow: 0 1px 4px #790cbd;
+  text-shadow: 0 1px 4px #790cbd, 0 1px 4px #790cbd, 0 1px 4px #790cbd;
   letter-spacing: 3.5px;
   transform: translateY(-1.5px);
 
+}
+.navbar-logo:hover::after {
+  left: 0;
+  animation: sword-in-monitor 1.5s;
+}
+
+@keyframes sword-in-monitor {
+  0% {
+    left: -500px;
+    transform: rotate(227deg);
+    opacity: 0;
+    filter: blur(5px);
+  }
+  20% {
+    left: 50px;
+    transform: rotate(227deg);
+    opacity: 0.5;
+    filter: blur(0px);
+  }
+
+  100% {
+    left: 0px;
+    transform: rotate(240deg);
+    opacity: 1;
+    filter: blur(0px);
+  }
 }
 
 .logoContainer {
@@ -212,6 +253,10 @@
   
 
 @media screen and (max-width: 1200px) {
+
+  .navbar-logo::after {
+    display: none;
+  }
   .tabletH1 {
     display: block;
     margin: auto;
@@ -441,3 +486,25 @@
   opacity: 1;
 }
 
+.visitor-count {
+  display: none;
+  color: #555;
+  font-family: 'PenumbraSerifStd-Bold';
+  width: fit-content;
+  font-size: var(--smallFont);
+  z-index: 10000;
+  margin: auto;
+  transform: translateY(-7px);
+  margin-left: 15px;
+  animation: disappear 2s 6s;
+}
+
+@keyframes disappear {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0%;
+  }
+  
+}

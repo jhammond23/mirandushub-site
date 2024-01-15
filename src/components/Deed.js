@@ -3,8 +3,15 @@ import Tilt from 'react-parallax-tilt';
 import InnerImageZoom from 'react-inner-image-zoom';
 import 'react-inner-image-zoom/lib/InnerImageZoom/styles.css'
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';  // Import the useNavigate hook
+
 
 const Deed = ({deed}) => {
+  const navigate = useNavigate();  // Initialize the navigate function
+
+  const goToInteractivePage = () => {
+    navigate(`/deeds/${deed.name}/interactive`, { state: { flatImg: deed.flatImg } });
+};
 
   let slides = [
     {
@@ -143,6 +150,7 @@ const Deed = ({deed}) => {
           </p>
         </div>
         <p className='cred'>The above 3D rendering of each deed is the work of a talented community memeber, TheInkKnight.</p>
+        <button className='interactiveButton' onClick={goToInteractivePage}>Place Buildings on {deed.name}</button>
 
       </div>
     </div>

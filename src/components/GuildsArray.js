@@ -29,7 +29,7 @@ const GuildsArray = [
     name: 'Everglen',
     description: 'Everglen prioritizes fun, success, and community. We are committed to supporting each other, offering guild perks and strategic plot placement to help our members thrive.',
     imageUrl: EverglenLogo,
-    discordLink:'https://discord.gg/everglen',
+    discordLink:'https://discord.gg/3zeu9TrzEw',
     youtubeLink: '',
     websiteLink: '',
     needBorder: false,
