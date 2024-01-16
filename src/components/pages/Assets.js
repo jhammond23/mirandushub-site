@@ -27,17 +27,17 @@ export default function Assets () {
         });
 
     return (
-        <section>
+        <main>
           <div id="menu">
-              <div id="menu-items">
-                  <Link to="/buildings" class='menu-item one' onMouseEnter={() => setIndex(1)}>BUILDINGS</Link>
-                  <Link to="/deeds" class="menu-item two" onMouseEnter={() => setIndex(2)}>DEEDS</Link>
-                  <Link class="menu-item three" to="/exemplars" onMouseEnter={() => setIndex(3)}>EXEMPLARS</Link>
-                  <Link to="/others" class='menu-item four' onMouseEnter={() => setIndex(4)}>OTHERS</Link>
-              </div>
+              <ul id="menu-items"  style={{listStyleType: 'none'}}>
+                  <li><Link to="/buildings" class='menu-item one' onMouseEnter={() => setIndex(1)}>BUILDINGS</Link></li>
+                  <li><Link to="/deeds" class="menu-item two" onMouseEnter={() => setIndex(2)}>DEEDS</Link></li>
+                  <li><Link class="menu-item three" to="/exemplars" onMouseEnter={() => setIndex(3)}>EXEMPLARS</Link></li>
+                  <li><Link to="/others" class='menu-item four' onMouseEnter={() => setIndex(4)}>OTHERS</Link></li>
+              </ul>
               <div className="menu-background-pattern"></div>
               <div id="menu-background-imageAssets"></div>
             </div>
-        </section>
+        </main>
     )
 }

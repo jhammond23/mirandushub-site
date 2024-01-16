@@ -3,8 +3,8 @@ import Tilt from 'react-parallax-tilt';
 import { useRef } from 'react';
 import { Goblin } from './monsters/Goblins';
 import { Troll } from './monsters/Trolls';
-import { Unknown1 } from './monsters/Unknown1';
-import { Unknown2 } from './monsters/Unknown2';
+import { GoblinMotherComponent } from './monsters/GoblinMother';
+import { BruteComponent } from './monsters/Brute';
 import { Minotaur } from './monsters/Minotaurs';
 
 
@@ -12,16 +12,16 @@ import { Minotaur } from './monsters/Minotaurs';
 const Displaymonsters = () => {
 
     const [myMonster, setmyMonster] = useState('');
-    const monsters = ['Goblins', 'Minotaurs', 'Trolls', 'Unknown1', 'Unknown2']
+    const monsters = ['Goblins', 'Minotaurs', 'Trolls', 'Brute / Mega Brute', 'Goblin Mother']
     const ref = useRef(null);
     const scroll = (scrollOffset) => {
         ref.current.scrollLeft += scrollOffset;
-      };
+    };
 
     return (
         <div className='r-background'>
             <div className='r-monstersBG'>
-            <br />
+                <br />
 
                 <header className='r-monsterSelectorTitle'>ONSTER</header>
 
@@ -38,7 +38,11 @@ const Displaymonsters = () => {
                                     onClick={() => setmyMonster(monster)}
                                     key={monster}
                                 >
-                                    <div className='r-monsterNames'>{monster}</div>
+                                    <div className='r-monsterNames'>
+                                        <span className='monster-text'>{monster}</span>
+                                    </div>
+
+
 
                                 </button>
                             </Tilt>
@@ -52,8 +56,8 @@ const Displaymonsters = () => {
                     {myMonster === 'Goblins' && <Goblin />}
                     {myMonster === 'Trolls' && <Troll />}
                     {myMonster === 'Minotaurs' && <Minotaur />}
-                    {myMonster === 'Unknown1' && <Unknown1 />}
-                    {myMonster === 'Unknown2' && <Unknown2 />}
+                    {myMonster === 'Brute / Mega Brute' && <BruteComponent />}
+                    {myMonster === 'Goblin Mother' && <GoblinMotherComponent />}
                 </div>
             </div>
 

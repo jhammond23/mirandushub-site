@@ -4,27 +4,6 @@ import './Navbar.css';
 import Dropdown from './Dropdown';
 import { useLocation } from 'react-router-dom';
 import Dropdown2 from './Dropdown2';
-import axios from "axios";
-
-function useVisitorCount() {
-  const [numVisitors, setNumVisitors] = useState(0);
-
-  useEffect(() => {
-    const fetchVisitorCount = async () => {
-      try {
-        const response = await axios.get("http://localhost:3001/visitors");
-        setNumVisitors(response.data.count);
-      } catch (error) {
-        console.error("Error fetching visitor count:", error);
-      }
-    };
-
-    fetchVisitorCount();
-  }, []);
-
-  return numVisitors;
-}
-
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -35,16 +14,6 @@ function Navbar() {
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
   const [letterRotations, setLetterRotations] = useState({});
-  const [showVisitorCount, setShowVisitorCount] = useState(true);
-  const visitorCount = useVisitorCount();
-
-  useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      setShowVisitorCount(false);
-    }, 8000);
-
-    return () => clearTimeout(timeoutId);
-  }, []);
 
   const handleResize = () => {
     if (window.innerWidth >= 1200) {
@@ -71,7 +40,6 @@ function Navbar() {
   
     setLetterRotations({ ...letterRotations, [navLinkId]: rotations });
   }
-  
 
   function handleNavLinkMouseLeave(navLinkId, clearAll = false) {
     setLetterRotations((prevState) => {
@@ -88,7 +56,6 @@ function Navbar() {
       return newState;
     });
   }
-  
 
   useEffect(() => {
     // Scroll to top on route change
@@ -136,8 +103,6 @@ function Navbar() {
               );
             })}
           </Link>
-      {showVisitorCount && <div className='visitor-count'>has helped: {visitorCount}</div>}
-
         </div>
 
         <div className='menu-icon' onClick={handleClick}>

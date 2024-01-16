@@ -13,7 +13,7 @@ const granaries = [
     {
         id : 'Granary1',
         name : 'Simple Granary',
-        description : `A small but necessary structu`,
+        description : `A small but necessary structure for storing your harvests.`,
         rarity : 'Uncommon',
         total : 600,
         Img : simpGran,
