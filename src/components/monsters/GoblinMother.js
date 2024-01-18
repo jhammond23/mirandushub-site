@@ -10,7 +10,7 @@ import unkn3 from '../NFTpics/monsters/Unknown2/Unknown3.jpg';
 const goblinMother = [
     {
         id : 'GoblinMother',
-        name : 'GoblinMother',
+        name : 'Goblin Mother',
         description : `The Goblin Mother, introduced in the May 2023 playtest, is a central boss figure in the forests of Mirandus. As the matriarch of the goblin clans, she commands respect and fear among her kin. Found deep within a goblin infested cave, a zone notorious for its high-level challenges, she is surrounded by her loyal goblin minions. Players must navigate through the cave systems and overcome hordes of goblins before facing her. The Goblin Mother is known for her cunning strategies and powerful magic, making her a formidable opponent. Defeating her not only requires high-level gear but also several players. Her defeat promises rare loot, including unique crafting materials and powerful artifacts.`,
         
 

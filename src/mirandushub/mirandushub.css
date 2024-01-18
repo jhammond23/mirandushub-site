@@ -2264,14 +2264,14 @@ nav{
   background-position: 50% 0%;
 }
 .r-Brute::after {
-  background-image: url('../components/NFTpics/monsters/Unknown1/Unknown2.jpg');
-  background-size: 370%;
-  background-position: 20% 50%;
+  background-image: url('../components/NFTpics/monsters/Unknown1/bruteEnlarged.png');
+  background-size: 200%;
+  background-position: 80% 100%;
 }
 .Mother::after {
-  background-image: url('../components/NFTpics/monsters/Unknown2/Unknown3.jpg');
-  background-size: 370%;
-  background-position: 20% 50%;
+  background-image: url('../components/NFTpics/monsters/Unknown2/motherWalking.png');
+  background-size: 150%;
+  background-position: 48% 74%;
 }
 .r-Minotaurs::after {
   background-image: url('../components/NFTpics/monsters/Minotaurs/Mino1.jpg');
@@ -3760,6 +3760,8 @@ input[type="checkbox"] {
   border: none;
   transition: transform 0.3s ease;
 }
+
+
 
 .interactivePannel button {
   background-color: #ecbc62;

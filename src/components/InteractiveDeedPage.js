@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
- 
+
 /* Images */
 
 import archStanImg from './NFTpics/buildings/archery/archStand.png';
@@ -97,9 +97,9 @@ import townOfTheMarquessLayout from './NFTpics/landDeeds/town/townOfTheMarquessL
 import townOfThePrinceLayout from './NFTpics/landDeeds/town/townOfThePrinceLayout.png';
 
 
-const BuildingSpot = ({ position, size, onSelect }) => {
+const BuildingSpot = ({ position, size, onSelect, onHover, buildingImg }) => {
     return (
-        <div 
+        <div
             className="building-spot"
             style={{
                 position: 'absolute',
@@ -117,6 +117,14 @@ const BuildingSpot = ({ position, size, onSelect }) => {
                 textAlign: 'center'
             }}
             onClick={() => onSelect(position)}
+            onMouseEnter={() => {
+                onHover(buildingImg);
+                console.log('Mouse Enter, Image:', buildingImg);
+            }}
+            onMouseLeave={() => {
+                onHover(null);
+                console.log('Mouse Leave, Image:', buildingImg);
+            }}
         >
             <style>
                 {`
@@ -145,9 +153,9 @@ function ColorPalette({ onColorSelected }) {
     return (
         <div className="color-palette">
             {colors.map((color, index) => (
-                <div 
-                    key={index} 
-                    className="color-swatch" 
+                <div
+                    key={index}
+                    className="color-swatch"
                     style={{ backgroundColor: color }}
                     onClick={() => onColorSelected(color)}
                 ></div>
@@ -161,7 +169,7 @@ const BuildingDropdown = ({ position, buildings, size, onSelect }) => {
     const filteredBuildings = buildings.filter(building => building.size === size);
 
     return (
-        <select 
+        <select
             style={{
                 position: 'absolute',
                 top: position.y,
@@ -189,27 +197,42 @@ const BuildingDropdown = ({ position, buildings, size, onSelect }) => {
 };
 
 const InteractiveDeedPage = () => {
+    const [hoveredImage, setHoveredImage] = useState(null);
+    const [imageVisible, setImageVisible] = useState(false);
     const { deedName } = useParams();
     const location = useLocation();
     const [selectedColor, setSelectedColor] = useState("");
     const [isEditMode, setIsEditMode] = useState(false);  // New state for edit mode
     const [buildingColors, setBuildingColors] = useState({});
 
+    useEffect(() => {
+        if (hoveredImage) {
+            setImageVisible(true); // Show the image
+        } else {
+            const timer = setTimeout(() => {
+                setImageVisible(false); // Hide the image after 1s
+            }, 1000); // match this with your CSS transition-duration
 
-const defaultDeedImages = {
-    "Homestead": homesteadLayout,
-    "Outpost": outpostLayout,
-    "Farming Hamlet": farmingHamletLayout,
-    "Ranching Hamlet": ranchingHamletLayout,
-    "Village of the Baron": villageOfTheBaronLayout,
-    "Village of the Earl": villageOfTheEarlLayout,
-    "Village of the Farmer": villageOfTheFarmerLayout,
-    "Village of the Viscount": villageOfTheViscountLayout,
-    "Town of the Arch Duke": townOfTheArchDukeLayout,
-    "Town of the Duke": townOfTheDukeLayout,
-    "Town of the Marquess": townOfTheMarquessLayout,
-    "Town of the Prince": townOfThePrinceLayout,
-};
+            // Clear timeout if the hovered image changes before the timeout is reached
+            return () => clearTimeout(timer);
+        }
+    }, [hoveredImage]);
+
+
+    const defaultDeedImages = {
+        "Homestead": homesteadLayout,
+        "Outpost": outpostLayout,
+        "Farming Hamlet": farmingHamletLayout,
+        "Ranching Hamlet": ranchingHamletLayout,
+        "Village of the Baron": villageOfTheBaronLayout,
+        "Village of the Earl": villageOfTheEarlLayout,
+        "Village of the Farmer": villageOfTheFarmerLayout,
+        "Village of the Viscount": villageOfTheViscountLayout,
+        "Town of the Arch Duke": townOfTheArchDukeLayout,
+        "Town of the Duke": townOfTheDukeLayout,
+        "Town of the Marquess": townOfTheMarquessLayout,
+        "Town of the Prince": townOfThePrinceLayout,
+    };
 
     const flatImg = location.state && location.state.flatImg ? location.state.flatImg : defaultDeedImages[deedName];
 
@@ -238,7 +261,7 @@ const defaultDeedImages = {
         { id: 25, name: 'Cemetery', size: '10x10', Img: ceme },
         { id: 27, name: 'Grand Cemetery', size: '20x20', Img: granCeme },
         { id: 26, name: 'Large Cemetery', size: '10x20', Img: largCeme },
-        { id: 74, name: 'Clothing Stand', size: '5x5', Img: clotStan }, 
+        { id: 74, name: 'Clothing Stand', size: '5x5', Img: clotStan },
         { id: 28, name: 'Dairy', size: '10x10', Img: dair },
         { id: 29, name: 'Large Dairy', size: '10x20', Img: largDair },
         { id: 3, name: 'Forge', size: '10x10', Img: forg },
@@ -253,7 +276,7 @@ const defaultDeedImages = {
         { id: 62, name: 'Grand Tavern', size: '20x20', Img: granTave },
         { id: 65, name: 'Grand Temple', size: '20x20', Img: granTemp },
         { id: 70, name: 'Grand Weapon Shop', size: '20x20', Img: granWeapShop },
-        { id: 75, name: 'Simple Granary', size: '5x5', Img: simpGran }, 
+        { id: 75, name: 'Simple Granary', size: '5x5', Img: simpGran },
         { id: 1, name: 'Hitching Post', size: '5x5', Img: hitc },
         { id: 32, name: 'Large Inn', size: '10x20', Img: largInn },
         { id: 37, name: 'Large Jeweler', size: '10x20', Img: largJewe },
@@ -293,360 +316,360 @@ const defaultDeedImages = {
         { id: 67, name: 'Weapon Stand', size: '5x5', Img: weapStan },
         { id: 73, name: 'Wood', size: '10x10', Img: wood },
         { id: 72, name: 'Wood Stand', size: '5x5', Img: woodStan },
-    ];    
+    ];
 
     const deedBuildingSpots = {
         'Homestead': [
             { x: '60%', y: '43%', size: '5x5' },
         ],
         'Outpost': [
-            { x: '38%', y: '71%', size: '5x5'},
-            { x: '56%', y: '50%', size: '5x5'},
-            { x: '58.3%', y: '60.5%', size: '5x5'},
-            { x: '56%', y: '71%', size: '5x5'},
-            { x: '32%', y: '50%', size: '10x10'},
-            
+            { x: '38%', y: '71%', size: '5x5' },
+            { x: '56%', y: '50%', size: '5x5' },
+            { x: '58.3%', y: '60.5%', size: '5x5' },
+            { x: '56%', y: '71%', size: '5x5' },
+            { x: '32%', y: '50%', size: '10x10' },
+
         ],
         'Farming Hamlet': [
-            { x: '46%', y: '39.2%', size: '5x5'},
-            { x: '46%', y: '53.3%', size: '5x5'},
-            { x: '54%', y: '53.5%', size: '5x5'},
-            { x: '54%', y: '60.2%', size: '5x5'},
-            { x: '41.9%', y: '60.5%', size: '10x10'},
-            { x: '37.8%', y: '32.4%', size: '10x10'},
-            { x: '57.9%', y: '53.5%', size: '10x10'},
+            { x: '46%', y: '39.2%', size: '5x5' },
+            { x: '46%', y: '53.3%', size: '5x5' },
+            { x: '54%', y: '53.5%', size: '5x5' },
+            { x: '54%', y: '60.2%', size: '5x5' },
+            { x: '41.9%', y: '60.5%', size: '10x10' },
+            { x: '37.8%', y: '32.4%', size: '10x10' },
+            { x: '57.9%', y: '53.5%', size: '10x10' },
         ],
         'Ranching Hamlet': [
-            { x: '25.8%', y: '49.8%', size: '5x5'},
-            { x: '25.8%', y: '68%', size: '5x5'},
-            { x: '29%', y: '77%', size: '5x5'},
-            { x: '36.2%', y: '77%', size: '5x5'},
-            { x: '39.4%', y: '68%', size: '5x5'},
-            { x: '58.3%', y: '40.7%', size: '10x10'},
-            { x: '58.3%', y: '68%', size: '10x10'},
-            { x: '44.7%', y: '68%', size: '10x10'},
+            { x: '25.8%', y: '49.8%', size: '5x5' },
+            { x: '25.8%', y: '68%', size: '5x5' },
+            { x: '29%', y: '77%', size: '5x5' },
+            { x: '36.2%', y: '77%', size: '5x5' },
+            { x: '39.4%', y: '68%', size: '5x5' },
+            { x: '58.3%', y: '40.7%', size: '10x10' },
+            { x: '58.3%', y: '68%', size: '10x10' },
+            { x: '44.7%', y: '68%', size: '10x10' },
         ],
         'Village of the Baron': [
-            { x: '58.5%', y: '49.8%', size: '5x5'},
-            { x: '62.7%', y: '49.8%', size: '5x5'},
-            { x: '62.7%', y: '57%', size: '5x5'},
-            { x: '62.7%', y: '64.3%', size: '5x5'},
-            { x: '58.5%', y: '71.9%', size: '5x5'},
-            { x: '54.1%', y: '71.9%', size: '5x5'},
-            { x: '49.8%', y: '71.9%', size: '5x5'},
-            { x: '49.8%', y: '64.3%', size: '5x5'},
-            { x: '28.5%', y: '49.8%', size: '10x10'},
-            { x: '37%', y: '49.8%', size: '10x10'},
-            { x: '37%', y: '72%', size: '10x10'},
-            { x: '28.5%', y: '72%', size: '10x10'},
-            { x: '49.8%', y: '12.6%', size: '10x10'},
-            { x: '49.8%', y: '27.5%', size: '10x10'},
-            { x: '62.7%', y: '12.6%', size: '10x10'},
-            { x: '62.7%', y: '27.5%', size: '10x10'},
+            { x: '58.5%', y: '49.8%', size: '5x5' },
+            { x: '62.7%', y: '49.8%', size: '5x5' },
+            { x: '62.7%', y: '57%', size: '5x5' },
+            { x: '62.7%', y: '64.3%', size: '5x5' },
+            { x: '58.5%', y: '71.9%', size: '5x5' },
+            { x: '54.1%', y: '71.9%', size: '5x5' },
+            { x: '49.8%', y: '71.9%', size: '5x5' },
+            { x: '49.8%', y: '64.3%', size: '5x5' },
+            { x: '28.5%', y: '49.8%', size: '10x10' },
+            { x: '37%', y: '49.8%', size: '10x10' },
+            { x: '37%', y: '72%', size: '10x10' },
+            { x: '28.5%', y: '72%', size: '10x10' },
+            { x: '49.8%', y: '12.6%', size: '10x10' },
+            { x: '49.8%', y: '27.5%', size: '10x10' },
+            { x: '62.7%', y: '12.6%', size: '10x10' },
+            { x: '62.7%', y: '27.5%', size: '10x10' },
         ],
         'Village of the Earl': [
-            { x: '18%', y: '25%', size: '5x5'},
-            { x: '18%', y: '68.1%', size: '5x5'},
-            { x: '49.9%', y: '18.9%', size: '5x5'},
-            { x: '53.5%', y: '18.9%', size: '5x5'},
-            { x: '64.1%', y: '18.9%', size: '5x5'},
-            { x: '67.8%', y: '18.9%', size: '5x5'},
-            { x: '60.6%', y: '18.9%', size: '5x5'},
-            { x: '71.3%', y: '18.9%', size: '5x5'},
-            { x: '78.4%', y: '18.9%', size: '5x5'},
-            { x: '49.9%', y: '74.3%', size: '5x5'},
-            { x: '53.5%', y: '74.3%', size: '5x5'},
-            { x: '64.1%', y: '74.3%', size: '5x5'},
-            { x: '67.8%', y: '74.3%', size: '5x5'},
-            { x: '60.6%', y: '74.3%', size: '5x5'},
-            { x: '71.3%', y: '74.3%', size: '5x5'},
-            { x: '78.4%', y: '74.3%', size: '5x5'},
-            { x: '32.2%', y: '19%', size: '10x10'},
-            { x: '39.3%', y: '19%', size: '10x10'},
-            { x: '42.9%', y: '31.2%', size: '10x10'},
-            { x: '50%', y: '31.2%', size: '10x10'},
-            { x: '60.6%', y: '31.2%', size: '10x10'},
-            { x: '67.8%', y: '31.2%', size: '10x10'},
-            { x: '78.4%', y: '31.2%', size: '10x10'},
-            { x: '50%', y: '55.8%', size: '10x10'},
-            { x: '60.6%', y: '55.8%', size: '10x10'},
-            { x: '67.8%', y: '55.8%', size: '10x10'},
-            { x: '78.4%', y: '55.8%', size: '10x10'},
-            { x: '42.9%', y: '55.8%', size: '10x10'},
-            { x: '32.2%', y: '68.3%', size: '10x20'},
+            { x: '18%', y: '25%', size: '5x5' },
+            { x: '18%', y: '68.1%', size: '5x5' },
+            { x: '49.9%', y: '18.9%', size: '5x5' },
+            { x: '53.5%', y: '18.9%', size: '5x5' },
+            { x: '64.1%', y: '18.9%', size: '5x5' },
+            { x: '67.8%', y: '18.9%', size: '5x5' },
+            { x: '60.6%', y: '18.9%', size: '5x5' },
+            { x: '71.3%', y: '18.9%', size: '5x5' },
+            { x: '78.4%', y: '18.9%', size: '5x5' },
+            { x: '49.9%', y: '74.3%', size: '5x5' },
+            { x: '53.5%', y: '74.3%', size: '5x5' },
+            { x: '64.1%', y: '74.3%', size: '5x5' },
+            { x: '67.8%', y: '74.3%', size: '5x5' },
+            { x: '60.6%', y: '74.3%', size: '5x5' },
+            { x: '71.3%', y: '74.3%', size: '5x5' },
+            { x: '78.4%', y: '74.3%', size: '5x5' },
+            { x: '32.2%', y: '19%', size: '10x10' },
+            { x: '39.3%', y: '19%', size: '10x10' },
+            { x: '42.9%', y: '31.2%', size: '10x10' },
+            { x: '50%', y: '31.2%', size: '10x10' },
+            { x: '60.6%', y: '31.2%', size: '10x10' },
+            { x: '67.8%', y: '31.2%', size: '10x10' },
+            { x: '78.4%', y: '31.2%', size: '10x10' },
+            { x: '50%', y: '55.8%', size: '10x10' },
+            { x: '60.6%', y: '55.8%', size: '10x10' },
+            { x: '67.8%', y: '55.8%', size: '10x10' },
+            { x: '78.4%', y: '55.8%', size: '10x10' },
+            { x: '42.9%', y: '55.8%', size: '10x10' },
+            { x: '32.2%', y: '68.3%', size: '10x20' },
         ],
         'Village of the Farmer': [
-            { x: '39.7%', y: '37%', size: '5x5'},
-            { x: '54.3%', y: '37%', size: '5x5'},
-            { x: '36.8%', y: '52.4%', size: '5x5'},
-            { x: '36.8%', y: '62.2%', size: '5x5'},
-            { x: '31%', y: '72.3%', size: '5x5'},
-            { x: '42.6%', y: '72.3%', size: '5x5'},
-            { x: '42.6%', y: '77.8%', size: '5x5'},
-            { x: '57.2%', y: '52.3%', size: '5x5'},
-            { x: '57.2%', y: '62.5%', size: '5x5'},
-            { x: '51.3%', y: '72.3%', size: '5x5'},
-            { x: '51.3%', y: '77.8%', size: '5x5'},
-            { x: '63%', y: '72.3%', size: '5x5'},
-            { x: '39.7%', y: '47.3%', size: '10x10'},
-            { x: '39.7%', y: '62.4%', size: '10x10'},
-            { x: '51.3%', y: '47.3%', size: '10x10'},
-            { x: '51.3%', y: '62.4%', size: '10x10'},
+            { x: '39.7%', y: '37%', size: '5x5' },
+            { x: '54.3%', y: '37%', size: '5x5' },
+            { x: '36.8%', y: '52.4%', size: '5x5' },
+            { x: '36.8%', y: '62.2%', size: '5x5' },
+            { x: '31%', y: '72.3%', size: '5x5' },
+            { x: '42.6%', y: '72.3%', size: '5x5' },
+            { x: '42.6%', y: '77.8%', size: '5x5' },
+            { x: '57.2%', y: '52.3%', size: '5x5' },
+            { x: '57.2%', y: '62.5%', size: '5x5' },
+            { x: '51.3%', y: '72.3%', size: '5x5' },
+            { x: '51.3%', y: '77.8%', size: '5x5' },
+            { x: '63%', y: '72.3%', size: '5x5' },
+            { x: '39.7%', y: '47.3%', size: '10x10' },
+            { x: '39.7%', y: '62.4%', size: '10x10' },
+            { x: '51.3%', y: '47.3%', size: '10x10' },
+            { x: '51.3%', y: '62.4%', size: '10x10' },
         ],
         'Village of the Viscount': [
-            { x: '32.1%', y: '34.5%', size: '5x5'},
-            { x: '28.5%', y: '77.9%', size: '5x5'},
-            { x: '46.3%', y: '84%', size: '5x5'},
-            { x: '49.8%', y: '84%', size: '5x5'},
-            { x: '60.5%', y: '84%', size: '5x5'},
-            { x: '57%', y: '84%', size: '5x5'},
-            { x: '71.2%', y: '65.4%', size: '5x5'},
-            { x: '71.2%', y: '59%', size: '5x5'},
-            { x: '71.2%', y: '46.8%', size: '5x5'},
-            { x: '71.2%', y: '40.5%', size: '5x5'},
-            { x: '67.6%', y: '9.5%', size: '5x5'},
-            { x: '42.8%', y: '15.9%', size: '5x5'},
-            { x: '28.5%', y: '59%', size: '10x10'},
-            { x: '35.7%', y: '59%', size: '10x10'},
-            { x: '35.7%', y: '71.5%', size: '10x10'},
-            { x: '46.3%', y: '59%', size: '10x10'},
-            { x: '46.3%', y: '71.5%', size: '10x10'},
-            { x: '56.9%', y: '71.5%', size: '10x10'},
-            { x: '64%', y: '59.2%', size: '10x10'},
-            { x: '56.9%', y: '9.7%', size: '10x10'},
-            { x: '56.9%', y: '22%', size: '10x10'},
-            { x: '64%', y: '22%', size: '10x10'},
-            { x: '56.9%', y: '40.5%', size: '10x20'},
+            { x: '32.1%', y: '34.5%', size: '5x5' },
+            { x: '28.5%', y: '77.9%', size: '5x5' },
+            { x: '46.3%', y: '84%', size: '5x5' },
+            { x: '49.8%', y: '84%', size: '5x5' },
+            { x: '60.5%', y: '84%', size: '5x5' },
+            { x: '57%', y: '84%', size: '5x5' },
+            { x: '71.2%', y: '65.4%', size: '5x5' },
+            { x: '71.2%', y: '59%', size: '5x5' },
+            { x: '71.2%', y: '46.8%', size: '5x5' },
+            { x: '71.2%', y: '40.5%', size: '5x5' },
+            { x: '67.6%', y: '9.5%', size: '5x5' },
+            { x: '42.8%', y: '15.9%', size: '5x5' },
+            { x: '28.5%', y: '59%', size: '10x10' },
+            { x: '35.7%', y: '59%', size: '10x10' },
+            { x: '35.7%', y: '71.5%', size: '10x10' },
+            { x: '46.3%', y: '59%', size: '10x10' },
+            { x: '46.3%', y: '71.5%', size: '10x10' },
+            { x: '56.9%', y: '71.5%', size: '10x10' },
+            { x: '64%', y: '59.2%', size: '10x10' },
+            { x: '56.9%', y: '9.7%', size: '10x10' },
+            { x: '56.9%', y: '22%', size: '10x10' },
+            { x: '64%', y: '22%', size: '10x10' },
+            { x: '56.9%', y: '40.5%', size: '10x20' },
 
         ],
         'Town of the Arch Duke': [
-            { x: '47.1%', y: '8.7%', size: '5x5'},
-            { x: '47.1%', y: '13.2%', size: '5x5'},
-            { x: '47.1%', y: '15.9%', size: '5x5'},
-            { x: '47.1%', y: '18.5%', size: '5x5'},
-            { x: '47.1%', y: '20.7%', size: '5x5'},
-            { x: '47.1%', y: '28%', size: '5x5'},
-            { x: '47.1%', y: '25.6%', size: '5x5'},
-            { x: '47.1%', y: '32.9%', size: '5x5'},
-            { x: '47.1%', y: '35.5%', size: '5x5'},
-            { x: '51.2%', y: '8.7%', size: '5x5'},
-            { x: '51.2%', y: '13.2%', size: '5x5'},
-            { x: '51.2%', y: '15.9%', size: '5x5'},
-            { x: '51.2%', y: '18.5%', size: '5x5'},
-            { x: '51.2%', y: '20.7%', size: '5x5'},
-            { x: '51.2%', y: '28%', size: '5x5'},
-            { x: '51.2%', y: '25.6%', size: '5x5'},
-            { x: '51.2%', y: '32.9%', size: '5x5'},
-            { x: '51.2%', y: '35.5%', size: '5x5'},
-            { x: '40.2%', y: '20.7%', size: '5x5'},
-            { x: '38.7%', y: '20.7%', size: '5x5'},
-            { x: '59.7%', y: '20.7%', size: '5x5'},
-            { x: '58.2%', y: '20.7%', size: '5x5'},
-            { x: '29%', y: '50%', size: '20x20'},
-            { x: '34.7%', y: '50%', size: '20x20'},
-            { x: '59.5%', y: '50%', size: '20x20'},
-            { x: '42.9%', y: '25.6%', size: '10x10'},
-            { x: '42.9%', y: '32.8%', size: '10x10'},
-            { x: '42.9%', y: '37.8%', size: '10x10'},
-            { x: '40.1%', y: '37.8%', size: '10x10'},
-            { x: '40.1%', y: '32.8%', size: '10x10'},
-            { x: '54%', y: '25.6%', size: '10x10'},
-            { x: '54%', y: '32.8%', size: '10x10'},
-            { x: '54%', y: '37.8%', size: '10x10'},
-            { x: '56.8%', y: '32.8%', size: '10x10'},
-            { x: '56.8%', y: '37.8%', size: '10x10'},
-            { x: '42.9%', y: '73.9%', size: '10x10'},
-            { x: '42.9%', y: '81.3%', size: '10x10'},
-            { x: '45.8%', y: '73.9%', size: '10x10'},
-            { x: '45.8%', y: '81.3%', size: '10x10'},
-            { x: '54%', y: '73.9%', size: '10x10'},
-            { x: '54%', y: '81.3%', size: '10x10'},
-            { x: '51.3%', y: '73.9%', size: '10x10'},
-            { x: '51.3%', y: '81.3%', size: '10x10'},
-            { x: '65.2%', y: '50%', size: '10x20'},
-            { x: '65.2%', y: '54.9%', size: '10x20'},
-            { x: '40.1%', y: '66.9%', size: '10x20'},
-            { x: '54.1%', y: '66.9%', size: '10x20'},
+            { x: '47.1%', y: '8.7%', size: '5x5' },
+            { x: '47.1%', y: '13.2%', size: '5x5' },
+            { x: '47.1%', y: '15.9%', size: '5x5' },
+            { x: '47.1%', y: '18.5%', size: '5x5' },
+            { x: '47.1%', y: '20.7%', size: '5x5' },
+            { x: '47.1%', y: '28%', size: '5x5' },
+            { x: '47.1%', y: '25.6%', size: '5x5' },
+            { x: '47.1%', y: '32.9%', size: '5x5' },
+            { x: '47.1%', y: '35.5%', size: '5x5' },
+            { x: '51.2%', y: '8.7%', size: '5x5' },
+            { x: '51.2%', y: '13.2%', size: '5x5' },
+            { x: '51.2%', y: '15.9%', size: '5x5' },
+            { x: '51.2%', y: '18.5%', size: '5x5' },
+            { x: '51.2%', y: '20.7%', size: '5x5' },
+            { x: '51.2%', y: '28%', size: '5x5' },
+            { x: '51.2%', y: '25.6%', size: '5x5' },
+            { x: '51.2%', y: '32.9%', size: '5x5' },
+            { x: '51.2%', y: '35.5%', size: '5x5' },
+            { x: '40.2%', y: '20.7%', size: '5x5' },
+            { x: '38.7%', y: '20.7%', size: '5x5' },
+            { x: '59.7%', y: '20.7%', size: '5x5' },
+            { x: '58.2%', y: '20.7%', size: '5x5' },
+            { x: '29%', y: '50%', size: '20x20' },
+            { x: '34.7%', y: '50%', size: '20x20' },
+            { x: '59.5%', y: '50%', size: '20x20' },
+            { x: '42.9%', y: '25.6%', size: '10x10' },
+            { x: '42.9%', y: '32.8%', size: '10x10' },
+            { x: '42.9%', y: '37.8%', size: '10x10' },
+            { x: '40.1%', y: '37.8%', size: '10x10' },
+            { x: '40.1%', y: '32.8%', size: '10x10' },
+            { x: '54%', y: '25.6%', size: '10x10' },
+            { x: '54%', y: '32.8%', size: '10x10' },
+            { x: '54%', y: '37.8%', size: '10x10' },
+            { x: '56.8%', y: '32.8%', size: '10x10' },
+            { x: '56.8%', y: '37.8%', size: '10x10' },
+            { x: '42.9%', y: '73.9%', size: '10x10' },
+            { x: '42.9%', y: '81.3%', size: '10x10' },
+            { x: '45.8%', y: '73.9%', size: '10x10' },
+            { x: '45.8%', y: '81.3%', size: '10x10' },
+            { x: '54%', y: '73.9%', size: '10x10' },
+            { x: '54%', y: '81.3%', size: '10x10' },
+            { x: '51.3%', y: '73.9%', size: '10x10' },
+            { x: '51.3%', y: '81.3%', size: '10x10' },
+            { x: '65.2%', y: '50%', size: '10x20' },
+            { x: '65.2%', y: '54.9%', size: '10x20' },
+            { x: '40.1%', y: '66.9%', size: '10x20' },
+            { x: '54.1%', y: '66.9%', size: '10x20' },
         ],
         'Town of the Duke': [
-            { x: '38.3%', y: '11.6%', size: '5x5'},
-            { x: '38.3%', y: '15.5%', size: '5x5'},
-            { x: '42.9%', y: '11.6%', size: '5x5'},
-            { x: '42.9%', y: '15.5%', size: '5x5'},
-            { x: '54.6%', y: '11.6%', size: '5x5'},
-            { x: '54.6%', y: '15.5%', size: '5x5'},
-            { x: '59.2%', y: '11.6%', size: '5x5'},
-            { x: '59.2%', y: '15.5%', size: '5x5'},
-            { x: '59.2%', y: '23.6%', size: '5x5'},
-            { x: '59.2%', y: '27.8%', size: '5x5'},
-            { x: '59.2%', y: '35.7%', size: '5x5'},
-            { x: '61.5%', y: '35.7%', size: '5x5'},
-            { x: '63.9%', y: '35.7%', size: '5x5'},
-            { x: '66.2%', y: '35.7%', size: '5x5'},
-            { x: '45.3%', y: '76%', size: '5x5'},
-            { x: '45.3%', y: '80.3%', size: '5x5'},
-            { x: '45.3%', y: '84.6%', size: '5x5'},
-            { x: '52.3%', y: '76%', size: '5x5'},
-            { x: '52.3%', y: '80.3%', size: '5x5'},
-            { x: '52.3%', y: '84.6%', size: '5x5'},
-            { x: '45.3%', y: '23.8%', size: '10x10'},
-            { x: '45.3%', y: '31.8%', size: '10x10'},
-            { x: '50%', y: '23.8%', size: '10x10'},
-            { x: '50%', y: '31.8%', size: '10x10'},
-            { x: '31.4%', y: '31.8%', size: '10x10'},
-            { x: '36%', y: '31.8%', size: '10x10'},
-            { x: '31.4%', y: '47.8%', size: '10x10'},
-            { x: '31.4%', y: '55.9%', size: '10x10'},
-            { x: '31.4%', y: '72.2%', size: '10x10'},
-            { x: '31.4%', y: '80.2%', size: '10x10'},
-            { x: '36%', y: '47.8%', size: '10x10'},
-            { x: '36%', y: '55.9%', size: '10x10'},
-            { x: '36%', y: '72.2%', size: '10x10'},
-            { x: '36%', y: '80.2%', size: '10x10'},
-            { x: '59.2%', y: '80.2%', size: '10x10'},
-            { x: '64%', y: '80.2%', size: '10x10'},
-            { x: '59.2%', y: '72.2%', size: '10x20'},
-            { x: '59.2%', y: '55.9%', size: '10x20'},
-            { x: '59.2%', y: '47.8%', size: '10x20'},
+            { x: '38.3%', y: '11.6%', size: '5x5' },
+            { x: '38.3%', y: '15.5%', size: '5x5' },
+            { x: '42.9%', y: '11.6%', size: '5x5' },
+            { x: '42.9%', y: '15.5%', size: '5x5' },
+            { x: '54.6%', y: '11.6%', size: '5x5' },
+            { x: '54.6%', y: '15.5%', size: '5x5' },
+            { x: '59.2%', y: '11.6%', size: '5x5' },
+            { x: '59.2%', y: '15.5%', size: '5x5' },
+            { x: '59.2%', y: '23.6%', size: '5x5' },
+            { x: '59.2%', y: '27.8%', size: '5x5' },
+            { x: '59.2%', y: '35.7%', size: '5x5' },
+            { x: '61.5%', y: '35.7%', size: '5x5' },
+            { x: '63.9%', y: '35.7%', size: '5x5' },
+            { x: '66.2%', y: '35.7%', size: '5x5' },
+            { x: '45.3%', y: '76%', size: '5x5' },
+            { x: '45.3%', y: '80.3%', size: '5x5' },
+            { x: '45.3%', y: '84.6%', size: '5x5' },
+            { x: '52.3%', y: '76%', size: '5x5' },
+            { x: '52.3%', y: '80.3%', size: '5x5' },
+            { x: '52.3%', y: '84.6%', size: '5x5' },
+            { x: '45.3%', y: '23.8%', size: '10x10' },
+            { x: '45.3%', y: '31.8%', size: '10x10' },
+            { x: '50%', y: '23.8%', size: '10x10' },
+            { x: '50%', y: '31.8%', size: '10x10' },
+            { x: '31.4%', y: '31.8%', size: '10x10' },
+            { x: '36%', y: '31.8%', size: '10x10' },
+            { x: '31.4%', y: '47.8%', size: '10x10' },
+            { x: '31.4%', y: '55.9%', size: '10x10' },
+            { x: '31.4%', y: '72.2%', size: '10x10' },
+            { x: '31.4%', y: '80.2%', size: '10x10' },
+            { x: '36%', y: '47.8%', size: '10x10' },
+            { x: '36%', y: '55.9%', size: '10x10' },
+            { x: '36%', y: '72.2%', size: '10x10' },
+            { x: '36%', y: '80.2%', size: '10x10' },
+            { x: '59.2%', y: '80.2%', size: '10x10' },
+            { x: '64%', y: '80.2%', size: '10x10' },
+            { x: '59.2%', y: '72.2%', size: '10x20' },
+            { x: '59.2%', y: '55.9%', size: '10x20' },
+            { x: '59.2%', y: '47.8%', size: '10x20' },
         ],
         'Town of the Marquess': [
-            { x: '44.6%', y: '8.2%', size: '5x5'},
-            { x: '44.6%', y: '12.9%', size: '5x5'},
-            { x: '52.6%', y: '12.9%', size: '5x5'},
-            { x: '52.6%', y: '8.2%', size: '5x5'},
-            { x: '26%', y: '36%', size: '5x5'},
-            { x: '26%', y: '45.2%', size: '5x5'},
-            { x: '71.2%', y: '36%', size: '5x5'},
-            { x: '71.2%', y: '45.2%', size: '5x5'},
-            { x: '31.4%', y: '59%', size: '5x5'},
-            { x: '31.4%', y: '63.6%', size: '5x5'},
-            { x: '31.4%', y: '73%', size: '5x5'},
-            { x: '31.4%', y: '77.5%', size: '5x5'},
-            { x: '34%', y: '82%', size: '5x5'},
-            { x: '36.6%', y: '82%', size: '5x5'},
-            { x: '44.6%', y: '86.5%', size: '5x5'},
-            { x: '52.6%', y: '86.5%', size: '5x5'},
-            { x: '65.8%', y: '63.6%', size: '5x5'},
-            { x: '65.8%', y: '59%', size: '5x5'},
-            { x: '36.6%', y: '17.6%', size: '10x10'},
-            { x: '36.6%', y: '31.6%', size: '10x10'},
-            { x: '36.6%', y: '45.2%', size: '10x10'},
-            { x: '31.4%', y: '31.6%', size: '10x10'},
-            { x: '31.4%', y: '45.2%', size: '10x10'},
-            { x: '58%', y: '17.6%', size: '10x10'},
-            { x: '58%', y: '31.6%', size: '10x10'},
-            { x: '58%', y: '45.2%', size: '10x10'},
-            { x: '63.2%', y: '45.2%', size: '10x10'},
-            { x: '63.2%', y: '31.6%', size: '10x10'},
-            { x: '63.2%', y: '72.8%', size: '10x10'},
-            { x: '58%', y: '72.8%', size: '10x10'},
-            { x: '52.6%', y: '72.8%', size: '10x10'},
-            { x: '42%', y: '72.8%', size: '10x10'},
-            { x: '36.6%', y: '59%', size: '10x20'},
-            { x: '52.6%', y: '59%', size: '10x20'},
+            { x: '44.6%', y: '8.2%', size: '5x5' },
+            { x: '44.6%', y: '12.9%', size: '5x5' },
+            { x: '52.6%', y: '12.9%', size: '5x5' },
+            { x: '52.6%', y: '8.2%', size: '5x5' },
+            { x: '26%', y: '36%', size: '5x5' },
+            { x: '26%', y: '45.2%', size: '5x5' },
+            { x: '71.2%', y: '36%', size: '5x5' },
+            { x: '71.2%', y: '45.2%', size: '5x5' },
+            { x: '31.4%', y: '59%', size: '5x5' },
+            { x: '31.4%', y: '63.6%', size: '5x5' },
+            { x: '31.4%', y: '73%', size: '5x5' },
+            { x: '31.4%', y: '77.5%', size: '5x5' },
+            { x: '34%', y: '82%', size: '5x5' },
+            { x: '36.6%', y: '82%', size: '5x5' },
+            { x: '44.6%', y: '86.5%', size: '5x5' },
+            { x: '52.6%', y: '86.5%', size: '5x5' },
+            { x: '65.8%', y: '63.6%', size: '5x5' },
+            { x: '65.8%', y: '59%', size: '5x5' },
+            { x: '36.6%', y: '17.6%', size: '10x10' },
+            { x: '36.6%', y: '31.6%', size: '10x10' },
+            { x: '36.6%', y: '45.2%', size: '10x10' },
+            { x: '31.4%', y: '31.6%', size: '10x10' },
+            { x: '31.4%', y: '45.2%', size: '10x10' },
+            { x: '58%', y: '17.6%', size: '10x10' },
+            { x: '58%', y: '31.6%', size: '10x10' },
+            { x: '58%', y: '45.2%', size: '10x10' },
+            { x: '63.2%', y: '45.2%', size: '10x10' },
+            { x: '63.2%', y: '31.6%', size: '10x10' },
+            { x: '63.2%', y: '72.8%', size: '10x10' },
+            { x: '58%', y: '72.8%', size: '10x10' },
+            { x: '52.6%', y: '72.8%', size: '10x10' },
+            { x: '42%', y: '72.8%', size: '10x10' },
+            { x: '36.6%', y: '59%', size: '10x20' },
+            { x: '52.6%', y: '59%', size: '10x20' },
 
         ],
         'Town of the Prince': [
-            { x: '48.2%', y: '8.9%', size: '5x5'},
-            { x: '50%', y: '8.9%', size: '5x5'},
-            { x: '50%', y: '12%', size: '5x5'},
-            { x: '48.2%', y: '12%', size: '5x5'},
-            { x: '43%', y: '69.6%', size: '5x5'},
-            { x: '43%', y: '72.5%', size: '5x5'},
-            { x: '43%', y: '75.5%', size: '5x5'},
-            { x: '46.5%', y: '69.6%', size: '5x5'},
-            { x: '46.5%', y: '72.5%', size: '5x5'},
-            { x: '46.5%', y: '75.5%', size: '5x5'},
-            { x: '51.7%', y: '69.6%', size: '5x5'},
-            { x: '51.7%', y: '72.5%', size: '5x5'},
-            { x: '51.7%', y: '75.5%', size: '5x5'},
-            { x: '55.2%', y: '69.6%', size: '5x5'},
-            { x: '55.2%', y: '72.5%', size: '5x5'},
-            { x: '55.2%', y: '75.5%', size: '5x5'},
-            { x: '32.5%', y: '45.4%', size: '10x10'},
-            { x: '36%', y: '45.4%', size: '10x10'},
-            { x: '36%', y: '63.5%', size: '10x10'},
-            { x: '36%', y: '69.8%', size: '10x10'},
-            { x: '32.5%', y: '63.5%', size: '10x10'},
-            { x: '32.5%', y: '69.8%', size: '10x10'},
-            { x: '60.5%', y: '45.4%', size: '10x10'},
-            { x: '64%', y: '45.4%', size: '10x10'},
-            { x: '64%', y: '63.5%', size: '10x10'},
-            { x: '64%', y: '69.8%', size: '10x10'},
-            { x: '60.5%', y: '63.5%', size: '10x10'},
-            { x: '60.5%', y: '69.8%', size: '10x10'},
-            { x: '32.5%', y: '57.6%', size: '10x20'},
-            { x: '41.3%', y: '57.6%', size: '10x20'},
-            { x: '51.7%', y: '57.6%', size: '10x20'},
-            { x: '60.5%', y: '57.6%', size: '10x20'},
-            { x: '32.5%', y: '27.1%', size: '20x20'},
-            { x: '60.5%', y: '27.1%', size: '20x20'},
+            { x: '48.2%', y: '8.9%', size: '5x5' },
+            { x: '50%', y: '8.9%', size: '5x5' },
+            { x: '50%', y: '12%', size: '5x5' },
+            { x: '48.2%', y: '12%', size: '5x5' },
+            { x: '43%', y: '69.6%', size: '5x5' },
+            { x: '43%', y: '72.5%', size: '5x5' },
+            { x: '43%', y: '75.5%', size: '5x5' },
+            { x: '46.5%', y: '69.6%', size: '5x5' },
+            { x: '46.5%', y: '72.5%', size: '5x5' },
+            { x: '46.5%', y: '75.5%', size: '5x5' },
+            { x: '51.7%', y: '69.6%', size: '5x5' },
+            { x: '51.7%', y: '72.5%', size: '5x5' },
+            { x: '51.7%', y: '75.5%', size: '5x5' },
+            { x: '55.2%', y: '69.6%', size: '5x5' },
+            { x: '55.2%', y: '72.5%', size: '5x5' },
+            { x: '55.2%', y: '75.5%', size: '5x5' },
+            { x: '32.5%', y: '45.4%', size: '10x10' },
+            { x: '36%', y: '45.4%', size: '10x10' },
+            { x: '36%', y: '63.5%', size: '10x10' },
+            { x: '36%', y: '69.8%', size: '10x10' },
+            { x: '32.5%', y: '63.5%', size: '10x10' },
+            { x: '32.5%', y: '69.8%', size: '10x10' },
+            { x: '60.5%', y: '45.4%', size: '10x10' },
+            { x: '64%', y: '45.4%', size: '10x10' },
+            { x: '64%', y: '63.5%', size: '10x10' },
+            { x: '64%', y: '69.8%', size: '10x10' },
+            { x: '60.5%', y: '63.5%', size: '10x10' },
+            { x: '60.5%', y: '69.8%', size: '10x10' },
+            { x: '32.5%', y: '57.6%', size: '10x20' },
+            { x: '41.3%', y: '57.6%', size: '10x20' },
+            { x: '51.7%', y: '57.6%', size: '10x20' },
+            { x: '60.5%', y: '57.6%', size: '10x20' },
+            { x: '32.5%', y: '27.1%', size: '20x20' },
+            { x: '60.5%', y: '27.1%', size: '20x20' },
 
         ],
     };
-    
+
 
     const buildingSizesConfig = {
-            'Homestead': {
-                '5x5': { width: '21%', height: '37%' },
-            },
-            'Outpost': {
-                '5x5': { width: '6%', height: '11%' },
-                '10x10': { width: '12%', height: '21%' },
-            },
-            'Farming Hamlet': {
-                '5x5': { width: '4%', height: '7%' },
-                '10x10': { width: '8.2%', height: '14.1%' },
-            },
-            'Ranching Hamlet': {
-                '5x5': { width: '5.3%', height: '9.1%' },
-                '10x10': { width: '10.4%', height: '18%' },
-            },
-            'Village of the Baron': {
-                '5x5': { width: '4.4%', height: '7.8%' },
-                '10x10': { width: '8.7%', height: '15%' },
-            },
-            'Village of the Earl': {
-                '5x5': { width: '3.7%', height: '6.8%' },
-                '10x10': { width: '7.2%', height: '12.5%' },
-                '10x20': { width: '14.4%', height: '12.9%' },
-            },
-            'Village of the Farmer': {
-                '5x5': { width: '3%', height: '5.6%' },
-                '10x10': { width: '6%', height: '10.5%' },
-            },
-            'Village of the Viscount': {
-                '5x5': { width: '3.8%', height: '6.3%' },
-                '10x10': { width: '7.4%', height: '12.6%' },
-                '10x20': { width: '14.4%', height: '12.9%' },
-            },
-            'Town of the Arch Duke': {
-                '5x5': { width: '1.6%', height: '2.8%' },
-                '10x10': { width: '3%', height: '5.3%' },
-                '10x20': { width: '5.8%', height: '5%' },
-                '20x20': { width: '5.8%', height: '9.8%' },
-            },
-            'Town of the Duke': {
-                '5x5': { width: '2.5%', height: '4.2%' },
-                '10x10': { width: '4.8%', height: '8.3%' },
-                '10x20': { width: '9.6%', height: '8.3%' },
-            },
-            'Town of the Marquess': {
-                '5x5': { width: '2.8%', height: '4.9%' },
-                '10x10': { width: '5.4%', height: '9.4%' },
-                '10x20': { width: '10.8%', height: '9.6%' },
-            },
-            'Town of the Prince': {
-                '5x5': { width: '1.8%', height: '3.2%' },
-                '10x10': { width: '3.6%', height: '6%' },
-                '10x20': { width: '7%', height: '6%' },
-                '20x20': { width: '7%', height: '12.2%' },
-            }      
+        'Homestead': {
+            '5x5': { width: '21%', height: '37%' },
+        },
+        'Outpost': {
+            '5x5': { width: '6%', height: '11%' },
+            '10x10': { width: '12%', height: '21%' },
+        },
+        'Farming Hamlet': {
+            '5x5': { width: '4%', height: '7%' },
+            '10x10': { width: '8.2%', height: '14.1%' },
+        },
+        'Ranching Hamlet': {
+            '5x5': { width: '5.3%', height: '9.1%' },
+            '10x10': { width: '10.4%', height: '18%' },
+        },
+        'Village of the Baron': {
+            '5x5': { width: '4.4%', height: '7.8%' },
+            '10x10': { width: '8.7%', height: '15%' },
+        },
+        'Village of the Earl': {
+            '5x5': { width: '3.7%', height: '6.8%' },
+            '10x10': { width: '7.2%', height: '12.5%' },
+            '10x20': { width: '14.4%', height: '12.9%' },
+        },
+        'Village of the Farmer': {
+            '5x5': { width: '3%', height: '5.6%' },
+            '10x10': { width: '6%', height: '10.5%' },
+        },
+        'Village of the Viscount': {
+            '5x5': { width: '3.8%', height: '6.3%' },
+            '10x10': { width: '7.4%', height: '12.6%' },
+            '10x20': { width: '14.4%', height: '12.9%' },
+        },
+        'Town of the Arch Duke': {
+            '5x5': { width: '1.6%', height: '2.8%' },
+            '10x10': { width: '3%', height: '5.3%' },
+            '10x20': { width: '5.8%', height: '5%' },
+            '20x20': { width: '5.8%', height: '9.8%' },
+        },
+        'Town of the Duke': {
+            '5x5': { width: '2.5%', height: '4.2%' },
+            '10x10': { width: '4.8%', height: '8.3%' },
+            '10x20': { width: '9.6%', height: '8.3%' },
+        },
+        'Town of the Marquess': {
+            '5x5': { width: '2.8%', height: '4.9%' },
+            '10x10': { width: '5.4%', height: '9.4%' },
+            '10x20': { width: '10.8%', height: '9.6%' },
+        },
+        'Town of the Prince': {
+            '5x5': { width: '1.8%', height: '3.2%' },
+            '10x10': { width: '3.6%', height: '6%' },
+            '10x20': { width: '7%', height: '6%' },
+            '20x20': { width: '7%', height: '12.2%' },
+        }
         // ... other deeds
     };
 
     const buildingSpots = deedBuildingSpots[deedName] || [];
-    
+
     const handleSpotSelect = (spot) => {
         setSelectedSpot(spot);
     };
@@ -663,13 +686,14 @@ const defaultDeedImages = {
     };
     return (
         <div className='r-background'>
+
             <h2 className='r-deedsBG r-deedInteractiveTitle'>Interactive Deed Mode: <span>{deedName}</span></h2>
-            
+
             {isEditMode && <ColorPalette onColorSelected={(color) => setSelectedColor(color)} />}
-    
+
             <div className='interactivePannel'>
 
-            <Link to="/deeds">
+                <Link to="/deeds">
                     <button>Back</button>
                 </Link>
 
@@ -678,41 +702,41 @@ const defaultDeedImages = {
                         window.location.href = e.target.value;
                     }
                 }}>
-                     <option value="">Select a Deed Type...</option>
-        <optgroup label="Homestead">
-            <option value="/deeds/Homestead/interactive">Homestead</option>
-        </optgroup>
-        <optgroup label="Outpost">
-            <option value="/deeds/Outpost/interactive">Outpost</option>
-        </optgroup>
-        <optgroup label="Hamlets">
-            <option value="/deeds/Farming%20Hamlet/interactive">Farming Hamlet</option>
-            <option value="/deeds/Ranching%20Hamlet/interactive">Ranching Hamlet</option>
-        </optgroup>
-        <optgroup label="Villages">
-            <option value="/deeds/Village%20of%20the%20Baron/interactive">Village of the Baron</option>
-            <option value="/deeds/Village%20of%20the%20Earl/interactive">Village of the Earl</option>
-            <option value="/deeds/Village%20of%20the%20Farmer/interactive">Village of the Farmer</option>
-            <option value="/deeds/Village%20of%20the%20Viscount/interactive">Village of the Viscount</option>
-        </optgroup>
-        <optgroup label="Towns">
-            <option value="/deeds/Town%20of%20the%20Arch%20Duke/interactive">Town of the Arch Duke</option>
-            <option value="/deeds/Town%20of%20the%20Duke/interactive">Town of the Duke</option>
-            <option value="/deeds/Town%20of%20the%20Marquess/interactive">Town of the Marquess</option>
-            <option value="/deeds/Town%20of%20the%20Prince/interactive">Town of the Prince</option>
-        </optgroup>
+                    <option value="">Select a Deed Type...</option>
+                    <optgroup label="Homestead">
+                        <option value="/deeds/Homestead/interactive">Homestead</option>
+                    </optgroup>
+                    <optgroup label="Outpost">
+                        <option value="/deeds/Outpost/interactive">Outpost</option>
+                    </optgroup>
+                    <optgroup label="Hamlets">
+                        <option value="/deeds/Farming%20Hamlet/interactive">Farming Hamlet</option>
+                        <option value="/deeds/Ranching%20Hamlet/interactive">Ranching Hamlet</option>
+                    </optgroup>
+                    <optgroup label="Villages">
+                        <option value="/deeds/Village%20of%20the%20Baron/interactive">Village of the Baron</option>
+                        <option value="/deeds/Village%20of%20the%20Earl/interactive">Village of the Earl</option>
+                        <option value="/deeds/Village%20of%20the%20Farmer/interactive">Village of the Farmer</option>
+                        <option value="/deeds/Village%20of%20the%20Viscount/interactive">Village of the Viscount</option>
+                    </optgroup>
+                    <optgroup label="Towns">
+                        <option value="/deeds/Town%20of%20the%20Arch%20Duke/interactive">Town of the Arch Duke</option>
+                        <option value="/deeds/Town%20of%20the%20Duke/interactive">Town of the Duke</option>
+                        <option value="/deeds/Town%20of%20the%20Marquess/interactive">Town of the Marquess</option>
+                        <option value="/deeds/Town%20of%20the%20Prince/interactive">Town of the Prince</option>
+                    </optgroup>
                 </select>
                 <button onClick={() => setIsEditMode(!isEditMode)}>
                     {isEditMode ? "Hide Highlighter" : "Show Highlighter"}
                 </button>
             </div>
-    
-            <div 
-                style={{ 
-                    position: 'relative', 
-                    width: '100%', 
+
+            <div
+                style={{
+                    position: 'relative',
+                    width: '100%',
                     paddingBottom: '56.25%',  // 16:9 aspect ratio
-                    border: '0px solid black', 
+                    border: '0px solid black',
                     backgroundImage: `url(${flatImg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
@@ -722,24 +746,44 @@ const defaultDeedImages = {
                     borderRadius: '25px',
                 }}
             >
-                {buildingSpots.map((spot, index) => (
-                    <BuildingSpot 
-                        key={index} 
-                        position={spot} 
-                        size={buildingSizesConfig[deedName][spot.size]}
-                        onSelect={handleSpotSelect}
-                    />
-                ))}
-    
+
+                {hoveredImage && (
+                    <div style={{
+                        position: 'absolute',
+                        top: '25px',
+                        left: '25px',
+                        zIndex: 1000000,
+                        border: '5px solid #291f0e',
+                        borderRadius: '5px',
+                    }}>
+                        <img src={hoveredImage} alt="Hovered Building" style={{ maxWidth: '175px', maxHeight: '175px' }} className='hovered-building' />
+                    </div>
+                )}
+
+                {buildingSpots.map((spot, index) => {
+                    const building = buildings.find(b => b.id === spot.buildingId);  // Assuming spot has a buildingId that corresponds to a building
+                    return (
+                        <BuildingSpot
+                            key={index}
+                            position={spot}
+                            size={buildingSizesConfig[deedName][spot.size]}
+                            onSelect={handleSpotSelect}
+                            onHover={setHoveredImage}  // Pass setHoveredImage as onHover
+                            buildingImg={building ? building.Img : null}  // Pass the image URL of the building
+                        />
+                    );
+                })}
+
+
                 {selectedSpot && (
-                    <BuildingDropdown 
+                    <BuildingDropdown
                         position={selectedSpot}
-                        buildings={buildings} 
+                        buildings={buildings}
                         size={selectedSpot.size}  // Pass the size of the selected spot
-                        onSelect={handleBuildingSelect} 
+                        onSelect={handleBuildingSelect}
                     />
                 )}
-                
+
                 {placedBuildings.map((item, index) => {
                     const building = item.building;
                     const currentBuildingSize = buildingSizesConfig[deedName][building.size];
@@ -748,7 +792,7 @@ const defaultDeedImages = {
 
                     if (isEditMode) {
                         return (
-                            <div 
+                            <div
                                 key={index}
                                 style={{
                                     position: 'absolute',
@@ -770,6 +814,8 @@ const defaultDeedImages = {
                                     fontSize: fontSize,
 
                                 }}
+                                onMouseEnter={() => setHoveredImage(building.Img)}
+                                onMouseLeave={() => setHoveredImage(null)}
                                 onClick={() => {
                                     if (isEditMode) {
                                         // Update the color for the clicked building
@@ -781,14 +827,14 @@ const defaultDeedImages = {
                                         setSelectedSpot(item.spot);  // Your existing logic
                                     }
                                 }}
-                                
+
                             >
-        {currentWidthPercentage >= 2.5 && building.name}
+                                {currentWidthPercentage >= 2.5 && building.name}
                             </div>
                         );
                     } else {
                         return (
-                            <div 
+                            <div
                                 key={index}
                                 style={{
                                     position: 'absolute',
@@ -810,6 +856,8 @@ const defaultDeedImages = {
                                     fontSize: fontSize,
 
                                 }}
+                                onMouseEnter={() => setHoveredImage(building.Img)}
+                                onMouseLeave={() => setHoveredImage(null)}
                                 onClick={() => {
                                     if (isEditMode) {
                                         // Update the color for the clicked building
@@ -821,8 +869,8 @@ const defaultDeedImages = {
                                         setSelectedSpot(item.spot);  // Your existing logic
                                     }
                                 }}
-                                                            >
-        {currentWidthPercentage >= 2.5 && building.name}
+                            >
+                                {currentWidthPercentage >= 2.5 && building.name}
                             </div>
                         );
                     }
@@ -834,6 +882,6 @@ const defaultDeedImages = {
 
         </div>
     );
-            }
+}
 
 export default InteractiveDeedPage;
